@@ -65,3 +65,9 @@ To create a centralized maintains  system, which automates the maintenance proce
 15. Line.
 16. Machine Group.
 
+**Zenhub :**
+
+![alt text](https://github.com/chkrish9/CS5551_Team_4_Project/blob/master/Documentation/Zenhub.PNG "Zenhub")
+
+![alt text](https://github.com/chkrish9/CS5551_Team_4_Project/blob/master/Documentation/Brundown.PNG "Brundown")
+
