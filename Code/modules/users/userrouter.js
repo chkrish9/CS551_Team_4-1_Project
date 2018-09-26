@@ -7,7 +7,7 @@ const config = require('../../config/database');
 var session = require('express-session');
 
 //Register
-router.post('/register', (req, res, next) =>{
+router.post('/add', (req, res, next) =>{
     let newUser = new User({
         name : req.body.name,
         email : req.body.email,
@@ -16,9 +16,9 @@ router.post('/register', (req, res, next) =>{
     });
     User.addUser(newUser, (err, user) =>{
         if(err){
-            res.json({success : false, msg : "Failed to register user"});
+            res.json({success : false, msg : "Failed to add user"});
         }else{
-            res.json({success : true, msg : "User registered"});
+            res.json({success : true, msg : "User added"});
         }
     });
 });
