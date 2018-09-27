@@ -20,6 +20,6 @@
             [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/user']">User</li>
         <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('usergroup')" [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/usergroup']">User
-            Group</li>
+            group</li>
     </ul>
 </div>

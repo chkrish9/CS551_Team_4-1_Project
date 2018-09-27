@@ -20,6 +20,8 @@ import { MachinegroupComponent } from './components/machine/machinegroup/machine
 import { AreaComponent } from './components/machine/area/area.component';
 import { LineComponent } from './components/machine/line/line.component';
 import { ReasonsComponent } from './components/machine/reasons/reasons.component';
+import { LabelComponent } from './components/common/label/label.component';
+import { TablelistComponent } from './components/common/tablelist/tablelist.component';
 
 const appRoutes : Routes = [
   {path : '', component: LoginComponent },
@@ -46,7 +48,9 @@ const appRoutes : Routes = [
     MachinegroupComponent,
     AreaComponent,
     LineComponent,
-    ReasonsComponent
+    ReasonsComponent,
+    LabelComponent,
+    TablelistComponent
   ],
   imports: [
     BrowserModule,

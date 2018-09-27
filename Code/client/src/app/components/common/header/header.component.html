@@ -42,31 +42,31 @@
     <div class="collapse navbar-collapse" id="navbar" [ngbCollapse]="isCollapsed">
       <ul class="nav navbar-nav navbar-left">
         <li *ngIf="authService.loggedIn() && authService.checkPrivilege('home')" [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('home')"><a [routerLink]="['/home']">Home</a></li>
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User
-                <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li *ngIf="authService.loggedIn() && authService.checkPrivilege('user')" [routerLinkActive]="['active']"
-                  [routerLinkActiveOptions]="{ exact : true }"><a [routerLink]="['/user']">Machine</a></li>
-                <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('usergroup')" [routerLinkActive]="['active']"
-                  [routerLinkActiveOptions]="{ exact : true }"><a [routerLink]="['/usergroup']">User Group</a></li>
-              </ul>
-            </li>
+          [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/home']">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li *ngIf="authService.loggedIn() && authService.checkPrivilege('user')" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/user']">User</a></li>
+            <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('usergroup')" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/usergroup']">User group</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Machine
             <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('area')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }"><a [routerLink]="['/area']">Area</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/area']">Area</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('line')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }"><a [routerLink]="['/line']">Line</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/line']">Line</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('reasons')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }"><a [routerLink]="['/reasons']">Reasons</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/reasons']">Reasons</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('machinegroup')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }"><a [routerLink]="['/machinegroup']">Machine Group</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/machinegroup']">Machine group</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('machine')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }"><a [routerLink]="['/machine']">Machine</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/machine']">Machine</a></li>
           </ul>
         </li>
       </ul>
@@ -77,4 +77,3 @@
     <!--/.nav-collapse -->
   </div>
 </nav>
-

@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     console.log("Logout");
     this.router.navigate(['/']);
+    this.isCollapsed = !this.isCollapsed
     return false;
   }
   updateMenu(route){
