@@ -46,6 +46,22 @@ export class AuthService {
     localStorage.clear();
   }
 
+  checkPrivilege(routename){
+    return true;
+  }
+
+  storeRoute(route){
+    localStorage.setItem('current_route', route);
+  }
+
+  IsRouteDisplay(route){
+    if(route === localStorage.getItem('current_route')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
   prepEndpoint(ep){
     if(!this.isDev){
       return ep;

@@ -12,10 +12,14 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/common/auth.service';
 import { HomeComponent } from './components/home/home.component';
-import { UserComponent } from './components/user/user.component';
-import { UsergroupComponent } from './components/usergroup/usergroup.component';
-import { MachineComponent } from './components/machine/machine.component';
+import { UserComponent } from './components/user/user/user.component';
+import { UsergroupComponent } from './components/user/usergroup/usergroup.component';
+import { MachineComponent } from './components/machine/machine/machine.component';
 import { SidemenuComponent } from './components/common/sidemenu/sidemenu.component';
+import { MachinegroupComponent } from './components/machine/machinegroup/machinegroup.component';
+import { AreaComponent } from './components/machine/area/area.component';
+import { LineComponent } from './components/machine/line/line.component';
+import { ReasonsComponent } from './components/machine/reasons/reasons.component';
 
 const appRoutes : Routes = [
   {path : '', component: LoginComponent },
@@ -23,6 +27,10 @@ const appRoutes : Routes = [
   {path : 'user', component: UserComponent, canActivate:[AuthGuard] },
   {path : 'usergroup', component: UsergroupComponent, canActivate:[AuthGuard] },
   {path : 'machine', component: MachineComponent, canActivate:[AuthGuard] },
+  {path : 'machinegroup', component: MachinegroupComponent, canActivate:[AuthGuard] },
+  {path : 'area', component: AreaComponent, canActivate:[AuthGuard] },
+  {path : 'line', component: LineComponent, canActivate:[AuthGuard] },
+  {path : 'reasons', component: ReasonsComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({
@@ -34,7 +42,11 @@ const appRoutes : Routes = [
     UserComponent,
     UsergroupComponent,
     MachineComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    MachinegroupComponent,
+    AreaComponent,
+    LineComponent,
+    ReasonsComponent
   ],
   imports: [
     BrowserModule,

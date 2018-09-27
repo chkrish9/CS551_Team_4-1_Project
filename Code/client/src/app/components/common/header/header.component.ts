@@ -23,4 +23,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
     return false;
   }
+  updateMenu(route){
+    this.authService.storeRoute(route);
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { AuthService } from '../../../services/common/auth.service';
 
 @Component({
   selector: 'app-sidemenu',
@@ -8,7 +9,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 export class SidemenuComponent implements OnInit {
   headerHeight: number;
   windowHeight: number;
-  constructor() {
+  constructor(
+    private authService:AuthService
+  ) {
   }
 
   ngOnInit() {
