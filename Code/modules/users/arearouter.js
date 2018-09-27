@@ -56,5 +56,9 @@ router.post('/authenticate', (req, res, next) =>{
     });
 });
 
-
+//add
+router.post('/add', (req, res, next) =>{
+    const username = req.body.username;
+    const password = req.body.password;
+});
 module.exports = router;
