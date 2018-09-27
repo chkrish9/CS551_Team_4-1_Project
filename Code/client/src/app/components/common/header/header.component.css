@@ -1,0 +1,27 @@
+.navbar-color{
+    background-color: #00adff;
+    border-color: #00adff;
+}
+.navbar-color .navbar-brand{
+    color: #fff;
+}
+.navbar-color li > a{
+    color: #fff;
+}
+
+.navbar-color .navbar-nav > li > a:hover, .navbar-color .navbar-nav > li > a:focus {
+    background-color: transparent;
+    color: #FFF;
+}
+.navbar-color .navbar-toggle .icon-bar{
+    background-color: #fff;
+}
+.img-logo{
+    padding: 0!important;
+}
+
+.img-logo img{
+    width: 60px;
+    height: 30px;
+    margin: 10px; 
+}

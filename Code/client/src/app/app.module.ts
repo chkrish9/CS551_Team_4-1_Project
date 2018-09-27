@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { UsergroupComponent } from './components/usergroup/usergroup.component';
 import { MachineComponent } from './components/machine/machine.component';
+import { SidemenuComponent } from './components/common/sidemenu/sidemenu.component';
 
 const appRoutes : Routes = [
   {path : '', component: LoginComponent },
@@ -32,7 +33,8 @@ const appRoutes : Routes = [
     HomeComponent,
     UserComponent,
     UsergroupComponent,
-    MachineComponent
+    MachineComponent,
+    SidemenuComponent
   ],
   imports: [
     BrowserModule,

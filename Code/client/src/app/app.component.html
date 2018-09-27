@@ -1,4 +1,9 @@
 <app-header></app-header>
-<div class="container">
-  <router-outlet></router-outlet>
+<div class="container-fulid">
+  <div class="col-sm-2 padding-lr-0 hidden-xs" *ngIf="authService.loggedIn()">
+    <app-sidemenu></app-sidemenu>
+  </div>
+  <div [ngClass]="{'col-sm-10': authService.loggedIn(), 'col-sm-12': !authService.loggedIn()}">
+    <router-outlet></router-outlet>
+  </div>
 </div>
