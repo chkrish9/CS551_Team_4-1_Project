@@ -52,11 +52,13 @@ module.exports.addUser = function(newUser, callback){
             bcrypt.hash(newUser.password, salt, (err, hash) =>{
                 if(err) throw err;
                 newUser.password = hash;
+                
                 newUser.save(callback);
             });
         });
     }else{
         newUser.save(callback);
+        
     }
 }
 
