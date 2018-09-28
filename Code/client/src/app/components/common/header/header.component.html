@@ -12,12 +12,12 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar" [ngbCollapse]="isCollapsed">
       <ul class="nav navbar-nav navbar-left">
-        <li *ngIf="authService.loggedIn() && authService.checkPrivilege('home')" [routerLinkActive]="['active']"
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('home')"><a [routerLink]="['/home']">Home</a></li>
-        <li *ngIf="authService.loggedIn() && authService.checkPrivilege('user')" [routerLinkActive]="['active']"
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('user')"><a [routerLink]="['/user']">User</a></li>
-        <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('machine')" [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('machine')"><a [routerLink]="['/area']">Machine</a></li>
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('machine')"><a [routerLink]="['/machine']">Machine</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="authService.loggedIn()"><a (click)="onLogoutClick()" href="#">Logout</a></li>

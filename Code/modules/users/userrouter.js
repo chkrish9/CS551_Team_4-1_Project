@@ -13,6 +13,14 @@ router.get('/all', (req, res, next) => {
     //res.send('Redirected to Contant list');
 });
 
+router.get('/get/:name', (req, res, next) => {
+    var name = req.params.name;
+    console.log(name);
+    User.getUserNames(name,(err, data) => {
+        res.json(data);
+    });
+});
+
 //Create
 router.post('/create', (req, res, next) =>{
     let newUser = new User({
