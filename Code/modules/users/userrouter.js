@@ -5,6 +5,9 @@ const User = require('../../models/user/user');
 //Get
 router.get('/all', (req, res, next) => {
     User.getUsers((err, data) => {
+        data.forEach(element => {
+            element.dateOfJoin = new Date(element.dateOfJoin).toLocaleDateString('en');
+        });
         res.json(data);
     });
     //res.send('Redirected to Contant list');
