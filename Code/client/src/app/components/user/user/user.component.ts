@@ -7,11 +7,15 @@ import { UserService } from '../../../services/user/user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  usergroup = {
-    "name": "",
-    "description": "",
-    "users": [],
-    "privillages": []
+  user = {
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "phone": "",
+    "username": "",
+    "password": "",
+    "dateOfJoin": "",
+    "cnfpassword": ""
   };
   users: any;
   isList : boolean = true;
@@ -29,20 +33,24 @@ export class UserComponent implements OnInit {
   new(){
     this.isList = false;
     this.isNew = true;
-    this.usergroup = {
-      "name": "",
-      "description": "",
-      "users": [],
-      "privillages": []
+    this.user = {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "phone": "",
+      "username": "",
+      "password": "",
+      "dateOfJoin": "",
+      "cnfpassword": ""
     };
   }
   back(){
     this.isList = true;
   }
-  populate(usergroup) {
+  populate(user) {
     this.isList = false;
     this.isNew = false;
-    this.usergroup = usergroup;
+    this.user = user;
   }
 
   getAllUsers() {
@@ -52,19 +60,19 @@ export class UserComponent implements OnInit {
   }
 
   save() {
-    this.userService.addUser(this.usergroup).subscribe(data => {
+    this.userService.addUser(this.user).subscribe(data => {
       this.isList = true;
       this.getAllUsers();
     });
   }
   delete() {
-    this.userService.deleteUser(this.usergroup["_id"]).subscribe(data => {
+    this.userService.deleteUser(this.user["_id"]).subscribe(data => {
       this.isList = true;
       this.getAllUsers();
     });
   }
   update() {
-    this.userService.updateUser(this.usergroup).subscribe(data => {
+    this.userService.updateUser(this.user).subscribe(data => {
       this.isList = true;
       this.getAllUsers();
     });
