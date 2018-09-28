@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
@@ -59,6 +60,7 @@ const appRoutes : Routes = [
     FormsModule,
     HttpClientModule,
     NgbModule,
+    NgxQRCodeModule,
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],

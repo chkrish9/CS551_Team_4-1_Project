@@ -5,38 +5,38 @@ import { AuthService } from '../common/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class LineService {
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
-  addUser(user) {
+  addLine(line) {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    let url = this.authService.prepEndpoint('users/create');
-    return this.http.post(url, user, { headers: headers });
+    let url = this.authService.prepEndpoint('line/create');
+    return this.http.post(url, line, { headers: headers });
   }
 
-  updateUser(user) {
+  updateLine(line) {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    let url = this.authService.prepEndpoint('users/update/');
-    url = url + `${user._id}`;
-    return this.http.put(url, user, { headers: headers });
+    let url = this.authService.prepEndpoint('line/update/');
+    url = url + `${line._id}`;
+    return this.http.put(url, line, { headers: headers });
   }
 
-  deleteUser(id) {
-    let url = this.authService.prepEndpoint('users/delete/');
+  deleteLine(id) {
+    let url = this.authService.prepEndpoint('line/delete/');
     return this.http.delete(url + id);
   }
 
-  getUsers() {
-    let url = this.authService.prepEndpoint('users/all/');
+  getLines() {
+    let url = this.authService.prepEndpoint('line/all/');
     return this.http.get(url);
   }
 
-  getUserName(searchTerm){
-    let url = this.authService.prepEndpoint('users/get/');
+  getLineName(searchTerm){
+    let url = this.authService.prepEndpoint('line/get/');
     return this.http.get(url+searchTerm);
   }
 }

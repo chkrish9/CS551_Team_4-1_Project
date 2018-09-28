@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticateUser(user).subscribe(data => {
       console.log(data);
       if(data["success"]){
-        this.authService.storeUserData(data["token"], data["user"]);
+        this.authService.storeUserData(data["token"], data["user"],data["privillages"]);
         console.log("Logged In");
         this.router.navigate(['home']);
       } else {

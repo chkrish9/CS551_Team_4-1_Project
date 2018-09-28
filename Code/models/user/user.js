@@ -65,7 +65,14 @@ module.exports.addUser = function(newUser, callback){
 }
 
 module.exports.updateUser = function(id,updateQuery, callback){
-    User.findByIdAndUpdate(id,{ $set: updateQuery },callback);
+    bcrypt.genSalt(10, (err, salt) =>{
+        bcrypt.hash(updateQuery.password, salt, (err, hash) =>{
+            if(err) throw err;
+            updateQuery.password = hash;
+            User.findByIdAndUpdate(id,{ $set: updateQuery },callback);
+        });
+    });
+    
 }
 
 module.exports.deleteUser = function(id,callback){
@@ -81,4 +88,9 @@ module.exports.comparePassword = function(userPassword, hash, callback){
         if(err) throw err;
         callback(null,isMatch);
     });
+}
+
+module.exports.getUserNames = function(name,callback){
+    console.log(name);
+    User.find({ "username": { $regex: '.*' + name + '.*' }}, callback);
 }

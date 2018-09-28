@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const UserGroup = require('../../models/user/usergroup');
+const Machinegroup = require('../../models/machine/machinegroup');
 
 //Get
 router.get('/all', (req, res, next) => {
-    UserGroup.getUserGroups((err, data) => {
+    Machinegroup.getMachineGroups((err, data) => {
         res.json(data);
     });
     //res.send('Redirected to Contant list');
@@ -12,13 +12,11 @@ router.get('/all', (req, res, next) => {
 
 //Create
 router.post('/create', (req, res, next) =>{
-    let newUserGroup = new UserGroup({
+    let newMachineGroup = new Machinegroup({
         name : req.body.name,
-        description: req.body.description,
-        users:req.body.users,
-        privillages : req.body.privillages
+        description : req.body.description
     });
-    UserGroup.addUserGroup(newUserGroup, (err, user) =>{
+    Machinegroup.addMachineGroup(newMachineGroup, (err, machineGroup) =>{
         if(err){
             res.json({success : false, msg : "Failed to Add user."});
         }else{
@@ -33,11 +31,9 @@ router.put('/update/:id', function (req, res,next) {
     var id = req.params.id;
     var update = { 
         name : req.body.name,
-        description: req.body.description,
-        users:req.body.users,
-        privillages : req.body.privillages
+        description : req.body.description
     };
-    UserGroup.updateUserGroup(id, update, (err, todo) => {
+    Machinegroup.updateMachineGroup(id, update, (err, machineGroup) => {
          if (err) {
             res.json({ msg: 'Failed while updating contact', status: 'error' });
         } else {
@@ -48,7 +44,7 @@ router.put('/update/:id', function (req, res,next) {
 
 //Delete
 router.delete('/delete/:id', (req, res, next) => {
-    UserGroup.deleteUserGroup(req.params.id,(err, result) => {
+    Machinegroup.deleteMachineGroup(req.params.id,(err, result) => {
         if (err) {
             res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });
         } else {

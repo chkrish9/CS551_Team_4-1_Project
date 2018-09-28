@@ -1,7 +1,7 @@
 <div class="row" *ngIf="isList">
   <div class="col-sm-12">
-    <h2>User List</h2>
-    <button class="btn btn-primary pull-right" type="button" (click)="new()">New</button>
+    <h2 class="pull-left">User List</h2>
+    <button class="btn btn-primary pull-right margin-top-20px" type="button" (click)="new()">New</button>
   </div>
   <div class="col-sm-3" *ngFor="let user of users">
     <div class="border-style" (click)="populate(user)">
@@ -12,9 +12,11 @@
   </div>
 </div>
 <div *ngIf="!isList">
-  <div>
-    <h2>User</h2>
-    <button class="btn btn-primary pull-right" type="button" (click)="back()">Back to List</button>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="pull-left">User</h2>
+      <button class="btn btn-primary pull-right margin-top-20px" type="button" (click)="back()">Back to List</button>
+    </div>
   </div>
   <form>
     <div class="row">
