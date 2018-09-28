@@ -5,6 +5,7 @@ var lines = require('../modules/machine/linerouter');
 var reasons = require('../modules/machine/reasonrouter');
 var machinegroups = require('../modules/machine/machinegrouprouter');
 var areas = require('../modules/machine/arearouter');
+var machines = require('../modules/machine/machinerouter');
 
 module.exports = function router(app){
     app.use('/users',users);
@@ -14,4 +15,5 @@ module.exports = function router(app){
     app.use('/reason',reasons);
     app.use('/machinegroup',machinegroups);
     app.use('/area',areas);
+    app.use('/machine',machines);
 };
