@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const config = require('../../config/database');
 
 //User schema
-const UserModel = mongoose.Schema({
+const UsersModel = mongoose.Schema({
     firstName : {
         type : String,
         required : true
