@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Line = require('../../models/machine/line');
+const Machinegroup = require('../../models/machine/machinegroup');
 
 //Get
 router.get('/all', (req, res, next) => {
-    Line.getLines((err, data) => {
+    Machinegroup.getMachineGroups((err, data) => {
         res.json(data);
     });
     //res.send('Redirected to Contant list');
@@ -12,11 +12,11 @@ router.get('/all', (req, res, next) => {
 
 //Create
 router.post('/create', (req, res, next) =>{
-    let newLine = new Line({
+    let newMachineGroup = new Machinegroup({
         name : req.body.name,
         description : req.body.description
     });
-    Line.addLine(newLine, (err, line) =>{
+    Machinegroup.addMachineGroup(newMachineGroup, (err, machineGroup) =>{
         if(err){
             res.json({success : false, msg : "Failed to Add user."});
         }else{
@@ -33,7 +33,7 @@ router.put('/update/:id', function (req, res,next) {
         name : req.body.name,
         description : req.body.description
     };
-    Line.updateLine(id, update, (err, line) => {
+    Machinegroup.updateMachineGroup(id, update, (err, machineGroup) => {
          if (err) {
             res.json({ msg: 'Failed while updating contact', status: 'error' });
         } else {
@@ -44,7 +44,7 @@ router.put('/update/:id', function (req, res,next) {
 
 //Delete
 router.delete('/delete/:id', (req, res, next) => {
-    Line.deleteLine(req.params.id,(err, result) => {
+    Machinegroup.deleteMachineGroup(req.params.id,(err, result) => {
         if (err) {
             res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });
         } else {
