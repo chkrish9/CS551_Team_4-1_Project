@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const config = require('../../config/database');
 
 //User schema
-const UsersModel = mongoose.Schema({
+const UserModel = mongoose.Schema({
     firstName : {
         type : String,
         required : true
@@ -34,6 +34,26 @@ const User = module.exports = mongoose.model('UserModel', UserModel);
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback);
 }
+
+
+
+
+module.exports.getUserById = function(id, callback){
+    User.findById(id, callback);
+}
+module.exports.getUserById = function(id, callback){
+    User.findById(id, callback);
+}
+
+module.exports.getUserById = function(id, callback){
+    User.findById(id, callback);
+}
+module.exports.getUserById = function(id, callback){
+    User.findById(id, callback);
+}
+
+
+
 
 module.exports.getUserByUsername = function(username, callback){
     const query = { username : username }
