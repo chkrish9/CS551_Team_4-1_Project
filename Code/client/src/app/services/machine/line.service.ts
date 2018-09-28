@@ -34,4 +34,9 @@ export class LineService {
     let url = this.authService.prepEndpoint('line/all/');
     return this.http.get(url);
   }
+
+  getLineName(searchTerm){
+    let url = this.authService.prepEndpoint('line/get/');
+    return this.http.get(url+searchTerm);
+  }
 }

@@ -2,6 +2,9 @@
     padding: 0;
     background-color: #333836;
     color: #FFF;
+    position: fixed;
+    width: 16.66666667%;
+    height: 100%;
 }
 .side-navbar .list-group-item{
     background-color: #d3d3d3!important;

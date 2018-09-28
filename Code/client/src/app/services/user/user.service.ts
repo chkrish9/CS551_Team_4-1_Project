@@ -34,4 +34,9 @@ export class UserService {
     let url = this.authService.prepEndpoint('users/all/');
     return this.http.get(url);
   }
+
+  getUserName(searchTerm){
+    let url = this.authService.prepEndpoint('users/get/');
+    return this.http.get(url+searchTerm);
+  }
 }

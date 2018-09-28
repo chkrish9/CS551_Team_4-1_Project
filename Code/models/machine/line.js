@@ -34,3 +34,8 @@ module.exports.deleteLine = function (id, callback) {
 module.exports.getLines = function (callback) {
     Line.find().exec(callback);
 }
+
+module.exports.getLineNames = function(name,callback){
+    console.log(name);
+    Line.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
+}

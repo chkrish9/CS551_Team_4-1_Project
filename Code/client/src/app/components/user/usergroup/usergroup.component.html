@@ -70,12 +70,15 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="form-group">
-              <input type="text" class="form-control" [(ngModel)]="search" name="search">
+              <input type="text" class="form-control" [(ngModel)]="search" name="search" (input)="onSearchChange($event.target.value)">
+              <div *ngIf="showResults" id="txtSearch" class="auto-complete-style">
+                  <p *ngFor="let result of searchResults" (click)="selectedItem(result)" class="border-bottom">{{result.username}}</p>
+                </div>
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-group">
-              <input type="button" class="form-control btn btn-primary" (click)="addUserToUserGroup()" value="Add">
+              <input type="button" class="form-control btn btn-primary" (click)="addUserToUserGroup(search)" value="Add">
             </div>
           </div>
         </div>
