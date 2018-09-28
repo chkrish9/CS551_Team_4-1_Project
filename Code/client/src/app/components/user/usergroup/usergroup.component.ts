@@ -60,6 +60,9 @@ export class UsergroupComponent implements OnInit {
     });
   }
 
+  addUserToUserGroup(){
+    //Need to add user
+  }
   privillageSelected(priv) {
     if (this.usergroup.privillages.indexOf(priv.name) < 0)
     {
