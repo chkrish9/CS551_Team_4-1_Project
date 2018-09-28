@@ -20,6 +20,10 @@ const UserModel = mongoose.Schema({
         type : String,
         required : true
     },
+    dateOfJoin : {
+        type : String,
+        required : true
+    },
     username : {
         type : String,
         required : true
@@ -58,6 +62,18 @@ module.exports.addUser = function(newUser, callback){
     }else{
         newUser.save(callback);
     }
+}
+
+module.exports.updateUser = function(id,updateQuery, callback){
+    User.findByIdAndUpdate(id,{ $set: updateQuery },callback);
+}
+
+module.exports.deleteUser = function(id,callback){
+    User.remove({ _id: id },callback);
+}
+
+module.exports.getUsers = function(callback){
+    User.find(callback);
 }
 
 module.exports.comparePassword = function(userPassword, hash, callback){

@@ -4,13 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { LoginComponent } from './components/login/login.component';
-
-import { AuthGuard } from './guards/auth.guard';
-import { AuthService } from './services/common/auth.service';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user/user.component';
 import { UsergroupComponent } from './components/user/usergroup/usergroup.component';
@@ -22,6 +20,10 @@ import { LineComponent } from './components/machine/line/line.component';
 import { ReasonsComponent } from './components/machine/reasons/reasons.component';
 import { LabelComponent } from './components/common/label/label.component';
 import { TablelistComponent } from './components/common/tablelist/tablelist.component';
+
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/common/auth.service';
+import { UserService } from './services/user/user.service';
 
 const appRoutes : Routes = [
   {path : '', component: LoginComponent },
@@ -57,11 +59,13 @@ const appRoutes : Routes = [
     FormsModule,
     HttpClientModule,
     NgbModule,
+    BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
