@@ -1,60 +1,69 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../../models/user');
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const config = require('../../config/database');
-var session = require('express-session');
+const User = require('../../models/user/user');
 
-//Register
-router.post('/add', (req, res, next) =>{
+//Get
+router.get('/all', (req, res, next) => {
+    User.getUsers((err, data) => {
+        data.forEach(element => {
+            element.dateOfJoin = new Date(element.dateOfJoin).toLocaleDateString('en');
+        });
+        res.json(data);
+    });
+    //res.send('Redirected to Contant list');
+});
+
+//Create
+router.post('/create', (req, res, next) =>{
     let newUser = new User({
-        name : req.body.name,
+        firstName : req.body.firstName,
+        lastName: req.body.lastName,
+        phone:req.body.phone,
         email : req.body.email,
+        dateOfJoin : req.body.dateOfJoin,
         username : req.body.username,
         password : req.body.password
     });
     User.addUser(newUser, (err, user) =>{
         if(err){
-            res.json({success : false, msg : "Failed to add user"});
+            res.json({success : false, msg : "Failed to Add user."});
         }else{
-            res.json({success : true, msg : "User added"});
+            res.json({success : true, msg : "User Added."});
         }
     });
 });
 
-//Authenticate
-router.post('/authenticate', (req, res, next) =>{
-    const username = req.body.username;
-    const password = req.body.password;
-    User.getUserByUsername(username, (err, user)=>{
-        if(err) throw err;
-        if(!user){
-             return res.json({success : false, msg : "User not found"});
+//Update
+router.put('/update/:id', function (req, res,next) {
+    console.log( req.body);
+    var id = req.params.id;
+    var update = { 
+        firstName : req.body.firstName,
+        lastName: req.body.lastName,
+        phone: req.body.phone,
+        email: req.body.email,
+        dateOfJoin: req.body.dateOfJoin,
+        username: req.body.username,
+        password: req.body.password
+    };
+    User.updateUser(id, update, (err, todo) => {
+         if (err) {
+            res.json({ msg: 'Failed while updating contact', status: 'error' });
+        } else {
+            res.json({ msg: 'new contact added successfully' });
         }
-       
-        User.comparePassword(password, user.password, (err, isMatch)=>{
-            if(err) throw err;
-            if(isMatch){
-                const token = jwt.sign(user, config.secret, {
-                    expiresIn : 604800 //1week
-                });
-                res.json({
-                    success : true,
-                    token : 'JWT '+token,
-                    user : {
-                        id : user._id,
-                        name : user.name,
-                        username : user.username,
-                        email: user.email
-                    }
-                });
-            }else{
-                return res.json({success : false, msg : "Wrong Password"});
-            }
-        });
     });
 });
 
+//Delete
+router.delete('/delete/:id', (req, res, next) => {
+    User.deleteUser(req.params.id,(err, result) => {
+        if (err) {
+            res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });
+        } else {
+            res.json({ msg: 'new contact added successfully' });
+        }
+    })
+});
 
 module.exports = router;

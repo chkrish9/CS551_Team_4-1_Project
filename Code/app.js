@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const config = require('./config/database');
 
+const passport = require('passport');
+const passportConfig = require('./config/passport');
+
 const routes = require("./routes/routes");
 
 //Initializing express server.
@@ -35,6 +38,11 @@ app.use(bodyParser.json());
 
 //Static folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Passport
+app.use(passport.initialize());
+app.use(passport.session());
+passportConfig.configStrategy(app,passport);
 
 //Passing app to route module to configure the routes.
 routes(app);

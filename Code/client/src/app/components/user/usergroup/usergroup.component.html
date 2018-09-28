@@ -1,0 +1,49 @@
+<div class="row" *ngIf="isList">
+    <div class="col-sm-12">
+      <h2>User group List</h2>
+      <button class="btn btn-primary pull-right" type="button" (click)="new()">New</button>
+    </div>
+    <div class="col-sm-3" *ngFor="let user of users">
+      <div class="border-style" (click)="populate(user)">
+        <p>Name : {{user.firstName + " " +user.lastName}}</p>
+        <p>Email : {{user.email}}</p>
+        <p>Date of Join : {{user.dateOfJoin}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isList">
+    <div>
+      <h2>User</h2>
+      <button class="btn btn-primary pull-right" type="button" (click)="back()">Back to List</button>
+    </div>
+    <form>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Group Name</label>
+            <input type="text" class="form-control" [(ngModel)]="usergroup.name" name="name">
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text" class="form-control" [(ngModel)]="usergroup.description" name="description">
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2" *ngIf="isNew">
+          <button class="btn btn-primary form-control" type="button" (click)="save()">Save</button>
+        </div>
+        <div class="col-sm-2" *ngIf="!isNew">
+          <button class="btn btn-primary form-control" type="button" (click)="update()">Update</button>
+        </div>
+        <div class="col-sm-2" *ngIf="!isNew">
+          <button class="btn btn-primary form-control" type="button" (click)="delete()">Delete</button>
+        </div>
+        <div class="col-sm-2" *ngIf="isNew">
+          <button class="btn btn-primary form-control" type="button" (click)="cancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
