@@ -56,7 +56,8 @@ module.exports.deleteMachine = function (id, callback) {
 }
 
 module.exports.getMachines = function (callback) {
-    Machine.find().exec(callback);
+   // Machine.find().exec(callback);
+    Machine.find().populate('area').populate('line').populate('machinegroup').exec(callback);
 }
 
 module.exports.getMachineNames = function(name,callback){

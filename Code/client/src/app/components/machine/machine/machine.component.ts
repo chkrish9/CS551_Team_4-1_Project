@@ -72,6 +72,9 @@ export class MachineComponent implements OnInit {
     this.isList = false;
     this.isNew = false;
     this.machine = machine;
+    this.machine.area =machine.area._id;
+    this.machine.line =machine.line._id;
+    this.machine.machinegroup =machine.machinegroup._id;
   }
 
   getMachines() {
@@ -100,6 +103,24 @@ export class MachineComponent implements OnInit {
       this.getMachines();
     });
   }
+  print() {
+    let printContents, popupWin;
+    printContents = document.getElementById('print-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Print tab</title>
+          <style>
+          //........Customized style.......
+          </style>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+}
   cancel() {
     this.isList = true;
   }
