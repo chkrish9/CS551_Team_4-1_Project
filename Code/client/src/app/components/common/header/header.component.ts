@@ -9,12 +9,16 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public isCollapsed = true;
+  public name:string;
   constructor(
     private authService:AuthService,
     private router:Router
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
+  
   }
 
   onLogoutClick(){
@@ -25,6 +29,7 @@ export class HeaderComponent implements OnInit {
     return false;
   }
   updateMenu(route){
-    this.authService.storeRoute(route);
+    var menu=this.authService.getSideMenuPage(route);
+    this.router.navigate([menu.name]);
   }
 }

@@ -30,3 +30,9 @@
     background-color: transparent;
     color: #FFF;
 }
+
+.nav-name{
+    float: right;
+    color: white;
+    padding: 15px;
+}
