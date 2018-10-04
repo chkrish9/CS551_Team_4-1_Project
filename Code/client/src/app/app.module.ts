@@ -27,7 +27,7 @@ import { AuthService } from './services/common/auth.service';
 import { UserService } from './services/user/user.service';
 
 const appRoutes : Routes = [
-  {path : '', component: LoginComponent },
+  {path : '', component: LoginComponent, canActivate:[AuthGuard] },
   {path : 'home', component: HomeComponent, canActivate:[AuthGuard] },
   {path : 'user', component: UserComponent, canActivate:[AuthGuard] },
   {path : 'usergroup', component: UsergroupComponent, canActivate:[AuthGuard] },
