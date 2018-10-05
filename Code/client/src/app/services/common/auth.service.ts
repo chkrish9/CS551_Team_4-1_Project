@@ -19,6 +19,11 @@ export class AuthService {
     private pri: Privillages
   ) {
     this.isDev = true;
+    if (this.getUser() !== null && this.getUser() !== undefined) {
+      this.getUserPrivillages().subscribe(data => {
+        this.privillages = data["privillages"];
+      });
+    }
   }
 
   authenticateUser(user) {
@@ -30,7 +35,6 @@ export class AuthService {
   storeUserData(token, user, privillages) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', (typeof (user) === "string") ? user : JSON.stringify(user));
-    localStorage.setItem('privillages', JSON.stringify(privillages));
     this.authToken = token;
     this.user = user;
     this.privillages = privillages;
@@ -46,7 +50,7 @@ export class AuthService {
     this.authToken = token;
   }
 
-  getToken(){
+  getToken() {
     return localStorage.getItem('id_token');
   }
 
@@ -57,8 +61,7 @@ export class AuthService {
   }
 
   checkPrivilege(routename) {
-    var privillages = JSON.parse(localStorage.getItem('privillages'));
-    if (privillages.indexOf(routename) > -1)
+    if (this.privillages.indexOf(routename) > -1)
       return true;
   }
 
@@ -72,12 +75,12 @@ export class AuthService {
   }
 
   hasPrevillage(homeroute) {
-    var privillages = JSON.parse(localStorage.getItem('privillages'));
+    var privi = this.privillages;
     var routes = this.pri.getPrivillages().filter(function (el) {
       return el.group === homeroute
     });
     var count = routes.filter(function (el) {
-      return privillages.indexOf(el.name) > -1;
+      return privi.indexOf(el.name) > -1;
     }).length;
     return count > 0
   }
@@ -91,9 +94,9 @@ export class AuthService {
       return el.group === route
     });
     var pr = _.sortBy(routes, 'order');
-    var privillages = JSON.parse(localStorage.getItem('privillages'));
+    var privi = this.privillages;
     var menu = pr.filter(function (el) {
-      return privillages.indexOf(el.name) > -1;
+      return privi.indexOf(el.name) > -1;
     })[0];
     this.storeRoute(route);
     return menu;
