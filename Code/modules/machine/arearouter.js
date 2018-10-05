@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const Area = require('../../models/machine/area');
 
 //Get
-router.get('/all', (req, res, next) => {
+router.get('/all',passport.authenticate('jwt',{session : false}), (req, res, next) => {
     Area.getAreas((err, data) => {
         res.json(data);
     });
@@ -12,7 +13,7 @@ router.get('/all', (req, res, next) => {
 
 
 //Create
-router.post('/create', (req, res, next) =>{
+router.post('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
     let newArea = new Area({
         name : req.body.name,
         description : req.body.description,
@@ -28,7 +29,7 @@ router.post('/create', (req, res, next) =>{
 });
 
 //Update
-router.put('/update/:id', function (req, res,next) {
+router.put('/update/:id',passport.authenticate('jwt',{session : false}), function (req, res,next) {
     console.log( req.body);
     var id = req.params.id;
     var update = { 
@@ -46,7 +47,7 @@ router.put('/update/:id', function (req, res,next) {
 });
 
 //Delete
-router.delete('/delete/:id', (req, res, next) => {
+router.delete('/delete/:id',passport.authenticate('jwt',{session : false}), (req, res, next) => {
     Area.deleteArea(req.params.id,(err, result) => {
         if (err) {
             res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });

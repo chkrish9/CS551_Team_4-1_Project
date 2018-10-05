@@ -13,30 +13,48 @@ export class LineService {
   ) { }
 
   addLine(line) {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('line/create');
     return this.http.post(url, line, { headers: headers });
   }
 
   updateLine(line) {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('line/update/');
     url = url + `${line._id}`;
     return this.http.put(url, line, { headers: headers });
   }
 
   deleteLine(id) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('line/delete/');
-    return this.http.delete(url + id);
+    return this.http.delete(url + id, { headers: headers });
   }
 
   getLines() {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('line/all/');
-    return this.http.get(url);
+    return this.http.get(url, { headers: headers });
   }
 
   getLineName(searchTerm){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('line/get/');
-    return this.http.get(url+searchTerm);
+    return this.http.get(url+searchTerm, { headers: headers });
   }
 }

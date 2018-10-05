@@ -13,30 +13,48 @@ export class UserService {
   ) { }
 
   addUser(user) {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('users/create');
     return this.http.post(url, user, { headers: headers });
   }
 
   updateUser(user) {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('users/update/');
     url = url + `${user._id}`;
     return this.http.put(url, user, { headers: headers });
   }
 
   deleteUser(id) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('users/delete/');
-    return this.http.delete(url + id);
+    return this.http.delete(url + id, { headers: headers });
   }
 
   getUsers() {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('users/all/');
-    return this.http.get(url);
+    return this.http.get(url, { headers: headers });
   }
 
   getUserName(searchTerm){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
     let url = this.authService.prepEndpoint('users/get/');
-    return this.http.get(url+searchTerm);
+    return this.http.get(url+searchTerm, { headers: headers });
   }
 }

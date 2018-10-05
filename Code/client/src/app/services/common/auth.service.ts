@@ -46,6 +46,10 @@ export class AuthService {
     this.authToken = token;
   }
 
+  getToken(){
+    return localStorage.getItem('id_token');
+  }
+
   logout() {
     this.authToken = null;
     this.user = null;

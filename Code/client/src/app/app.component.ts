@@ -9,7 +9,7 @@ import { ToasterConfig } from 'angular2-toaster';
 export class AppComponent {
   title = 'client';
   public config : ToasterConfig = new ToasterConfig({
-    positionClass: 'toast-top-right',
+    positionClass: 'toast-bottom-right',
     animation: 'fade'
   });
   constructor(
