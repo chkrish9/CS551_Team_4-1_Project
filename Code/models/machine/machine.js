@@ -47,7 +47,7 @@ module.exports.getMachineById = function (id, callback) {
 }
 
 module.exports.addMachine = function (newMachine, callback) {
-    console.log(newMachine);
+    //console.log(newMachine);
     newMachine.save(callback);
 }
 
@@ -65,6 +65,6 @@ module.exports.getMachines = function (callback) {
 }
 
 module.exports.getMachineNames = function(name,callback){
-    console.log(name);
+    //console.log(name);
     Machine.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
 }

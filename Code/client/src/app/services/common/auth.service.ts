@@ -62,6 +62,15 @@ export class AuthService {
       return true;
   }
 
+  getUserPrivillages() {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    let url = this.prepEndpoint('login/privillages/' + this.getUser().id);
+    return this.http.get(url, { headers: headers });
+  }
+
   hasPrevillage(homeroute) {
     var privillages = JSON.parse(localStorage.getItem('privillages'));
     var routes = this.pri.getPrivillages().filter(function (el) {
@@ -73,7 +82,7 @@ export class AuthService {
     return count > 0
   }
 
-  getUsername() {
+  getUser() {
     return JSON.parse(localStorage.getItem('user'));
   }
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const config = require('../../config/database');
+const UserGroup = require('../../models/user/usergroup');
 
 //User schema
 const UserModel = mongoose.Schema({
@@ -51,7 +51,7 @@ module.exports.getUserByEmail = function(email, callback){
 }
 
 module.exports.addUser = function(newUser, callback){
-    console.log(newUser);
+    //console.log(newUser);
     if(newUser.password!==""){
         bcrypt.genSalt(10, (err, salt) =>{
             bcrypt.hash(newUser.password, salt, (err, hash) =>{
@@ -92,6 +92,26 @@ module.exports.comparePassword = function(userPassword, hash, callback){
 }
 
 module.exports.getUserNames = function(name,callback){
-    console.log(name);
+    //console.log(name);
     User.find({ "username": { $regex: '.*' + name + '.*' }}, callback);
+}
+
+module.exports.getUserPrivillages = function(id,callback){
+    UserGroup.getUserGroupByUserId(id, (err, data) => {
+        if (err) throw err;
+        var usergroups = data.filter(element => {
+            return element.users.length > 0;
+        });
+        let privillages = [];
+        for (var i = 0; i < usergroups.length; i++) {
+            //console.log(usergroups[i]);
+            for (var j = 0; j < usergroups[i].privillages.length; j++) {
+                //console.log(usergroups[i].privillages[j]);
+                if (privillages.indexOf(usergroups[i].privillages[j]) < 0) {
+                    privillages.push(usergroups[i].privillages[j]);
+                }
+            }
+        }
+        callback(null,privillages);
+    });
 }

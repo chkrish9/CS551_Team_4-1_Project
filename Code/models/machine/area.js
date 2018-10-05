@@ -24,7 +24,7 @@ module.exports.getAreaById = function (id, callback) {
 }
 
 module.exports.addArea = function (newArea, callback) {
-    console.log(newArea);
+    //console.log(newArea);
     newArea.save(callback);
 }
 

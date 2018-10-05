@@ -39,7 +39,7 @@ router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res
 
 //Update
 router.put('/update/:id',passport.authenticate('jwt',{session : false}),  function (req, res, next) {
-    console.log(req.body);
+    //console.log(req.body);
     var id = req.params.id;
     var update = {
         name: req.body.name,

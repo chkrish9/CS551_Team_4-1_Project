@@ -19,7 +19,7 @@ module.exports.getLineById = function (id, callback) {
 }
 
 module.exports.addLine = function (newLine, callback) {
-    console.log(newLine);
+    //console.log(newLine);
     newLine.save(callback);
 }
 
@@ -36,6 +36,6 @@ module.exports.getLines = function (callback) {
 }
 
 module.exports.getLineNames = function(name,callback){
-    console.log(name);
+    //console.log(name);
     Line.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
 }

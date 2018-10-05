@@ -16,7 +16,7 @@ router.get('/all',passport.authenticate('jwt',{session : false}), (req, res, nex
 
 router.get('/get/:name',passport.authenticate('jwt',{session : false}), (req, res, next) => {
     var name = req.params.name;
-    console.log(name);
+    //console.log(name);
     User.getUserNames(name,(err, data) => {
         res.json(data);
     });
@@ -44,7 +44,7 @@ router.post('/create',passport.authenticate('jwt',{session : false}), (req, res,
 
 //Update
 router.put('/update/:id',passport.authenticate('jwt',{session : false}), function (req, res,next) {
-    console.log( req.body);
+    //console.log( req.body);
     var id = req.params.id;
     var update = { 
         firstName : req.body.firstName,

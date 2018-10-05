@@ -19,7 +19,7 @@ module.exports.getReasonById = function (id, callback) {
 }
 
 module.exports.addReason = function (newReason, callback) {
-    console.log(newReason);
+    //console.log(newReason);
     newReason.save(callback);
 }
 

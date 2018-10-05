@@ -19,7 +19,7 @@ module.exports.getMachineGroupById = function (id, callback) {
 }
 
 module.exports.addMachineGroup = function (newMachineGroup, callback) {
-    console.log(newMachineGroup);
+    //console.log(newMachineGroup);
     newMachineGroup.save(callback);
 }
 

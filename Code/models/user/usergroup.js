@@ -27,7 +27,7 @@ module.exports.getUserGroupById = function (id, callback) {
 }
 
 module.exports.addUserGroup = function (newUserGroup, callback) {
-    console.log(newUserGroup);
+    //console.log(newUserGroup);
     newUserGroup.save(callback);
 }
 
