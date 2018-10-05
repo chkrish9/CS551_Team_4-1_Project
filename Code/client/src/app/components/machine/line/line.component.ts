@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LineService } from '../../../services/machine/line.service';
+import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
   selector: 'app-line',
@@ -13,19 +14,19 @@ export class LineComponent implements OnInit {
     "description": ""
   };
   lines: any;
-  isList : boolean = true;
-  isNew : boolean = true;
+  isList: boolean = true;
+  isNew: boolean = true;
   constructor(
-    private lineService: LineService
-  ) 
-  {
+    private lineService: LineService,
+    private toasterService: ToasterService
+  ) {
     this.getLines();
   }
 
   ngOnInit() {
   }
 
-  new(){
+  new() {
     this.isList = false;
     this.isNew = true;
     this.line = {
@@ -33,7 +34,7 @@ export class LineComponent implements OnInit {
       "description": ""
     };
   }
-  back(){
+  back() {
     this.isList = true;
   }
   populate(line) {
@@ -49,19 +50,50 @@ export class LineComponent implements OnInit {
   }
 
   save() {
-    this.lineService.addLine(this.line).subscribe(data => {
-      this.isList = true;
-      this.getLines();
-    });
+    if (this.line.name !== "" && this.line.description !== "") {
+      this.lineService.addLine(this.line).subscribe(data => {
+        var toast: Toast = {
+          type: 'success',
+          title: 'Success',
+          body: 'Line saved successfully.',
+          showCloseButton: true
+        };
+        this.toasterService.pop(toast);
+        this.isList = true;
+        this.getLines();
+      });
+    }else{
+      var toast: Toast = {
+        type: 'error',
+        title: 'Error',
+        body: 'Please fill the all the details.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+    }
   }
   delete() {
     this.lineService.deleteLine(this.line["_id"]).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Line deleted successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
       this.isList = true;
       this.getLines();
     });
   }
   update() {
     this.lineService.updateLine(this.line).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Line updated successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
       this.isList = true;
       this.getLines();
     });

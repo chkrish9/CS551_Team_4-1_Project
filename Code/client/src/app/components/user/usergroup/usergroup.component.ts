@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Privillages } from '../../../services/common/privillages';
 import { UsergroupService } from '../../../services/user/usergroup.service';
 import { UserService } from '../../../services/user/user.service';
+import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
   selector: 'app-usergroup',
@@ -28,7 +29,8 @@ export class UsergroupComponent implements OnInit {
   constructor(
     private privillages: Privillages,
     private usergroupService: UsergroupService,
-    private userService: UserService
+    private userService: UserService,
+    private toasterService: ToasterService
   ) {
     this.getAllUserGroups();
     this.privillagesList = privillages.getPrivillages();
@@ -85,10 +87,28 @@ export class UsergroupComponent implements OnInit {
   }
 
   save() {
-    this.usergroupService.addUserGroup(this.usergroup).subscribe(data => {
-      this.isList = true;
-      this.getAllUserGroups();
-    });
+    if (this.usergroup.name !== "" &&
+      this.usergroup.description !== "") {
+      this.usergroupService.addUserGroup(this.usergroup).subscribe(data => {
+        var toast: Toast = {
+          type: 'success',
+          title: 'Success',
+          body: 'Usergroup saved successfully.',
+          showCloseButton: true
+        };
+        this.toasterService.pop(toast);
+        this.isList = true;
+        this.getAllUserGroups();
+      });
+    } else {
+      var toast: Toast = {
+        type: 'error',
+        title: 'Error',
+        body: 'Please fill the all the details.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+    }
   }
   /*Auto complete methods start */
   onSearchChange(value) {
@@ -121,6 +141,13 @@ export class UsergroupComponent implements OnInit {
   /*Auto complete methods end */
   delete() {
     this.usergroupService.deleteUserGroup(this.usergroup["_id"]).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Usergroup deleted successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
       this.isList = true;
       this.getAllUserGroups();
     });
@@ -128,6 +155,13 @@ export class UsergroupComponent implements OnInit {
 
   update() {
     this.usergroupService.updateUserGroup(this.usergroup).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Usergroup updated successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
       this.isList = true;
       this.getAllUserGroups();
     });

@@ -8,6 +8,7 @@ const MachineModel = mongoose.Schema({
         required: true
     },
     machinegroup: {
+        required:true,
         type: Schema.Types.ObjectId,
         ref: 'MachineGroupModel'
     },
@@ -18,16 +19,19 @@ const MachineModel = mongoose.Schema({
         type: String
     },
     dateOfInstall: {
+        required:true,
         type: String
     },
     qrCode: {
         type: String
     },
     area: {
+        required:true,
         type: Schema.Types.ObjectId,
         ref: 'AreaModel'
     },
     line: {
+        required:true,
         type: Schema.Types.ObjectId,
         ref: 'LineModel'
     },
