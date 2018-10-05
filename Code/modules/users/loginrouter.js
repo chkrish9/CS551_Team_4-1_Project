@@ -20,7 +20,7 @@ router.post('/authenticate', (req, res, next) => {
             if (err) throw err;
             if (isMatch) {
                 const token = jwt.sign(user.toJSON(), config.secret, {
-                    expiresIn: 604800 //1week
+                    expiresIn: 86400 //1week
                 });
                 UserGroup.getUserGroupByUserId(user._id, (err, data) => {
                     if (err) throw err;
@@ -49,7 +49,7 @@ router.post('/authenticate', (req, res, next) => {
                 });
                
             } else {
-                return res.json({ success: false, msg: "Wrong Password" });
+                return res.json({ success: false, msg: "Invalid Username/Password." });
             }
         });
     });

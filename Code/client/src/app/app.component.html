@@ -1,5 +1,6 @@
 <app-header></app-header>
 <div class="container-fulid margin-top-50px">
+    <toaster-container [toasterconfig]="config"></toaster-container>
   <div class="col-sm-2 padding-lr-0 hidden-xs" *ngIf="authService.loggedIn()">
     <app-sidemenu></app-sidemenu>
   </div>

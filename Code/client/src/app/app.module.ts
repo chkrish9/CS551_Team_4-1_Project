@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { ToasterModule } from 'angular2-toaster';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
@@ -61,6 +63,8 @@ const appRoutes : Routes = [
     HttpClientModule,
     NgbModule,
     NgxQRCodeModule,
+    BrowserAnimationsModule,
+    ToasterModule.forRoot(),
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],
