@@ -20,7 +20,7 @@ router.post('/authenticate', (req, res, next) => {
             if (err) throw err;
             if (isMatch) {
                 const token = jwt.sign(user.toJSON(), config.secret, {
-                    expiresIn: 86400 //1week
+                    expiresIn: 86400 //1day
                 });
                 UserGroup.getUserGroupByUserId(user._id, (err, data) => {
                     if (err) throw err;
