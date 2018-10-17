@@ -6,15 +6,15 @@
 
 ## Members :
 
-**Name & Class ID :** MURALI KRISHNA SAI CHUKKA & 09
+**Name & Class ID :** Murali Krishna Sai Chukka & 09
 
-**Name & Class ID :** RUPESH SAI RAM DODDALA & 10
+**Name & Class ID :** Rupesh Sai Ram Doddala & 10
 
-**Name & Class ID :** KAVIN KUMAR ARUMUGAM & 63
+**Name & Class ID :** Kavin Kumar Arumugam & 63
 
-**Name & Class ID :** RAHUL REDDY YERVA & 59
+**Name & Class ID :** Rahul Reddy Yerva & 59
 
-**Name & Class ID :** TEJASWI AYYADAPU & 03
+**Name & Class ID :** Tejaswi Ayyadapu & 03
 
 
 ---
