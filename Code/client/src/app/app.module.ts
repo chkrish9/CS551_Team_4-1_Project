@@ -27,6 +27,7 @@ import { TablelistComponent } from './components/common/tablelist/tablelist.comp
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/common/auth.service';
 import { UserService } from './services/user/user.service';
+import { ImportComponent } from './components/settings/import/import.component';
 
 const appRoutes : Routes = [
   {path : '', component: LoginComponent, canActivate:[AuthGuard] },
@@ -38,6 +39,7 @@ const appRoutes : Routes = [
   {path : 'area', component: AreaComponent, canActivate:[AuthGuard] },
   {path : 'line', component: LineComponent, canActivate:[AuthGuard] },
   {path : 'reasons', component: ReasonsComponent, canActivate:[AuthGuard] },
+  {path : 'import', component: ImportComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({
@@ -55,7 +57,8 @@ const appRoutes : Routes = [
     LineComponent,
     ReasonsComponent,
     LabelComponent,
-    TablelistComponent
+    TablelistComponent,
+    ImportComponent
   ],
   imports: [
     BrowserModule,
