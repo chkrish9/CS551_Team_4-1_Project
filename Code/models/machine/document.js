@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //Line schema
-const LineModel = mongoose.Schema({
+const DocumentModel = mongoose.Schema({
     name: {
         type: String,
         required: true
