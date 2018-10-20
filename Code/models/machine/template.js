@@ -37,5 +37,5 @@ module.exports.getTemplate = function (callback) {
 
 module.exports.getTemplateNames = function(name,callback){
     //console.log(name);
-    Line.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
+    Template.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
 }
