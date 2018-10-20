@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//Line schema
+//Document schema
 const DocumentModel = mongoose.Schema({
     name: {
         type: String,
@@ -12,7 +12,7 @@ const DocumentModel = mongoose.Schema({
     }
 });
 
-const Line = module.exports = mongoose.model('DocumentModel', LineModel);
+const Document = module.exports = mongoose.model('DocumentModel', LineModel);
 
 module.exports.getLineById = function (id, callback) {
     Line.findById(id, callback);
