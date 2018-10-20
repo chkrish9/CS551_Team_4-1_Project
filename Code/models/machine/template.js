@@ -14,7 +14,7 @@ const TemplateModel = mongoose.Schema({
 
 const Template = module.exports = mongoose.model('TemplateModel', TemplateModel);
 
-module.exports.getLineById = function (id, callback) {
+module.exports.getTemplateById = function (id, callback) {
     Line.findById(id, callback);
 }
 
