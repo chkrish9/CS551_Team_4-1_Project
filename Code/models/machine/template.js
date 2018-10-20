@@ -12,14 +12,14 @@ const TemplateModel = mongoose.Schema({
     }
 });
 
-const Line = module.exports = mongoose.model('LineModel', LineModel);
+const Template = module.exports = mongoose.model('TemplateModel', TemplateModel);
 
 module.exports.getLineById = function (id, callback) {
     Line.findById(id, callback);
 }
 
-module.exports.addLine = function (newLine, callback) {
-    //console.log(newLine);
+module.exports.addTemplate = function (newTemplate, callback) {
+    //console.log(newTemplate);
     newLine.save(callback);
 }
 
