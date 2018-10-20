@@ -12,7 +12,7 @@ const DocumentModel = mongoose.Schema({
     }
 });
 
-const Line = module.exports = mongoose.model('LineModel', LineModel);
+const Line = module.exports = mongoose.model('DocumentModel', LineModel);
 
 module.exports.getLineById = function (id, callback) {
     Line.findById(id, callback);
