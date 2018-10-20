@@ -18,9 +18,8 @@ module.exports.getDocumentById = function (id, callback) {
     Document.findById(id, callback);
 }
 
-module.exports.addLine = function (newLine, callback) {
-    //console.log(newLine);
-    newLine.save(callback);
+module.exports.addDocument = function (newDocument, callback) {
+    newDocument.save(callback);
 }
 
 module.exports.updateLine = function (id, updateQuery, callback) {
