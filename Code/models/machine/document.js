@@ -14,8 +14,8 @@ const DocumentModel = mongoose.Schema({
 
 const Document = module.exports = mongoose.model('DocumentModel', LineModel);
 
-module.exports.getLineById = function (id, callback) {
-    Line.findById(id, callback);
+module.exports.getDocumentById = function (id, callback) {
+    Document.findById(id, callback);
 }
 
 module.exports.addLine = function (newLine, callback) {
