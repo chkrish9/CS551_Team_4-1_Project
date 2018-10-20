@@ -23,15 +23,15 @@ module.exports.addTemplate = function (newTemplate, callback) {
     newLine.save(callback);
 }
 
-module.exports.updateLine = function (id, updateQuery, callback) {
+module.exports.updateTemplate = function (id, updateQuery, callback) {
     Line.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
 
-module.exports.deleteLine = function (id, callback) {
+module.exports.deleteTemplate = function (id, callback) {
     Line.remove({ _id: id }, callback);
 }
 
-module.exports.getLines = function (callback) {
+module.exports.getTemplate = function (callback) {
     Line.find().exec(callback);
 }
 
