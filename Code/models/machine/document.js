@@ -34,7 +34,7 @@ module.exports.getDocuments = function (callback) {
     Document.find().exec(callback);
 }
 
-module.exports.getLineNames = function(name,callback){
+module.exports.getDocumentNames = function(name,callback){
     //console.log(name);
-    Line.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
+    Document.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
 }
