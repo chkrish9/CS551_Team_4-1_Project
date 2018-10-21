@@ -30,8 +30,8 @@ module.exports.deleteDocument = function (id, callback) {
     Document.remove({ _id: id }, callback);
 }
 
-module.exports.getLines = function (callback) {
-    Line.find().exec(callback);
+module.exports.getDocuments = function (callback) {
+    Document.find().exec(callback);
 }
 
 module.exports.getLineNames = function(name,callback){
