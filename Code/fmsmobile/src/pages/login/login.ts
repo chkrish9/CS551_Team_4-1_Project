@@ -9,7 +9,7 @@ import {  HomePage } from
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
