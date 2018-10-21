@@ -22,8 +22,8 @@ module.exports.addDocument = function (newDocument, callback) {
     newDocument.save(callback);
 }
 
-module.exports.updateLine = function (id, updateQuery, callback) {
-    Line.findByIdAndUpdate(id, { $set: updateQuery }, callback);
+module.exports.updateDocument = function (id, updateQuery, callback) {
+    Document.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
 
 module.exports.deleteLine = function (id, callback) {
