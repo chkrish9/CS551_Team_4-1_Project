@@ -12,7 +12,7 @@ const DocumentModel = mongoose.Schema({
     }
 });
 
-const Document = module.exports = mongoose.model('DocumentModel', LineModel);
+const Document = module.exports = mongoose.model('DocumentModel', DocumentModel);
 
 module.exports.getDocumentById = function (id, callback) {
     Document.findById(id, callback);
@@ -26,8 +26,8 @@ module.exports.updateDocument = function (id, updateQuery, callback) {
     Document.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
 
-module.exports.deleteLine = function (id, callback) {
-    Line.remove({ _id: id }, callback);
+module.exports.deleteDocument = function (id, callback) {
+    Document.remove({ _id: id }, callback);
 }
 
 module.exports.getLines = function (callback) {
