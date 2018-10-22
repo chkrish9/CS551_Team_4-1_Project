@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//Line schema
+//Template schema
 const TemplateModel = mongoose.Schema({
     name: {
         type: String,
