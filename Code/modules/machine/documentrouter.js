@@ -21,11 +21,11 @@ router.get('/get/:name',passport.authenticate('jwt',{session : false}),  (req, r
 
 //Create
 router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res, next) =>{
-    let newLine = new Line({
+    let newDocument = new Document({
         name : req.body.name,
         description : req.body.description
     });
-    Line.addLine(newLine, (err, line) =>{
+    Document.addDocument(newDocument, (err, document) =>{
         if(err){
             res.json({success : false, msg : "Failed to Add user."});
         }else{
