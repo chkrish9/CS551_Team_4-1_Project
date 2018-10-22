@@ -5,7 +5,7 @@ const Document = require('../../models/machine/document');
 
 //Get
 router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
-    Line.getLines((err, data) => {
+    Doucment.getDocuments((err, data) => {
         res.json(data);
     });
     //res.send('Redirected to Contant list');
