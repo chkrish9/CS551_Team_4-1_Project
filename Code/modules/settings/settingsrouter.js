@@ -20,23 +20,6 @@ router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res
     });
 });
 
-//Update
-router.put('/update/:id',passport.authenticate('jwt',{session : false}),  function (req, res,next) {
-    //console.log( req.body);
-    var id = req.params.id;
-    var update = { 
-        name : req.body.name,
-        description : req.body.description
-    };
-    Import.updateLine(id, update, (err, line) => {
-         if (err) {
-            res.json({ msg: 'Failed while updating contact', status: 'error' });
-        } else {
-            res.json({ msg: 'new contact added successfully' });
-        }
-    });
-});
-
 
 
 module.exports = router;
