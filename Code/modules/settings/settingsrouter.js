@@ -2,14 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Import = require('../../models/settings/import');
+const Settings = require('../../models/settings/import')
 
-//Get
-router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
-    Import.getLines((err, data) => {
-        res.json(data);
-    });
-    //res.send('Redirected to Contant list');
-});
 
 //Create
 router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res, next) =>{
@@ -43,15 +37,6 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
     });
 });
 
-//Delete
-router.delete('/delete/:id',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
-    Import.deleteLine(req.params.id,(err, result) => {
-        if (err) {
-            res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });
-        } else {
-            res.json({ msg: 'new contact added successfully' });
-        }
-    })
-});
+
 
 module.exports = router;
