@@ -22,6 +22,8 @@ export class LoginPage {
   }
   login()
   {
+
+    //login using local storage
   var users = JSON.parse(localStorage.getItem("users"));
   var username = this.username;
   var password = this.password;
