@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { LineService } from '../../../services/machine/line.service';
+import { DocumentService } from '../../../services/machine/document.service';
 import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
-  selector: 'app-line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.css']
+  selector: 'app-document',
+  templateUrl: './document.component.html',
+  styleUrls: ['./document.component.css']
 })
 export class LineComponent implements OnInit {
 
