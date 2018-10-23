@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController  } from 'ionic-angular';
-import {  HomePage } from 
+import {  HomePage } from '../home/home'
 
 /**
  * Generated class for the LoginPage page.
@@ -12,7 +12,7 @@ import {  HomePage } from
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
+  templateUrl: 'login.html'
 })
 export class LoginPage {
   username: string = "";
