@@ -25,7 +25,7 @@ router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res
         name : req.body.name,
         description : req.body.description
     });
-    Line.addLine(newLine, (err, line) =>{
+    Line.addLine(newTemplate, (err, line) =>{
         if(err){
             res.json({success : false, msg : "Failed to Add user."});
         }else{
