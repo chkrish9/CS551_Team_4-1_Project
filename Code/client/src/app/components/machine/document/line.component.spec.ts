@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MachinegroupComponent } from './machinegroup.component';
+import { LineComponent } from './line.component';
 
-describe('MachinegroupComponent', () => {
-  let component: MachinegroupComponent;
-  let fixture: ComponentFixture<MachinegroupComponent>;
+describe('LineComponent', () => {
+  let component: LineComponent;
+  let fixture: ComponentFixture<LineComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MachinegroupComponent ]
+      declarations: [ LineComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MachinegroupComponent);
+    fixture = TestBed.createComponent(LineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

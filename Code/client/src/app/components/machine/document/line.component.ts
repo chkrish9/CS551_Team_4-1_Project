@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { MachinegroupService } from '../../../services/machine/machinegroup.service';
+import { LineService } from '../../../services/machine/line.service';
 import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
-  selector: 'app-machinegroup',
-  templateUrl: './machinegroup.component.html',
-  styleUrls: ['./machinegroup.component.css']
+  selector: 'app-line',
+  templateUrl: './line.component.html',
+  styleUrls: ['./line.component.css']
 })
-export class MachinegroupComponent implements OnInit {
+export class LineComponent implements OnInit {
 
-  machinegroup = {
+  line = {
     "name": "",
     "description": ""
   };
-  machinegroups: any;
+  lines: any;
   isList: boolean = true;
   isNew: boolean = true;
   constructor(
-    private machinegroupService: MachinegroupService,
+    private lineService: LineService,
     private toasterService: ToasterService
   ) {
-    this.getAllMachineGroups();
+    this.getLines();
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class MachinegroupComponent implements OnInit {
   new() {
     this.isList = false;
     this.isNew = true;
-    this.machinegroup = {
+    this.line = {
       "name": "",
       "description": ""
     };
@@ -37,30 +37,30 @@ export class MachinegroupComponent implements OnInit {
   back() {
     this.isList = true;
   }
-  populate(machinegroup) {
+  populate(line) {
     this.isList = false;
     this.isNew = false;
-    this.machinegroup = machinegroup;
+    this.line = line;
   }
 
-  getAllMachineGroups() {
-    this.machinegroupService.getMachineGroups().subscribe(data => {
-      this.machinegroups = data;
+  getLines() {
+    this.lineService.getLines().subscribe(data => {
+      this.lines = data;
     });
   }
 
   save() {
-    if (this.machinegroup.name !== "" && this.machinegroup.description !== "") {
-      this.machinegroupService.addMachineGroup(this.machinegroup).subscribe(data => {
+    if (this.line.name !== "" && this.line.description !== "") {
+      this.lineService.addLine(this.line).subscribe(data => {
         var toast: Toast = {
           type: 'success',
           title: 'Success',
-          body: 'Machine group saved successfully.',
+          body: 'Line saved successfully.',
           showCloseButton: true
         };
         this.toasterService.pop(toast);
         this.isList = true;
-        this.getAllMachineGroups();
+        this.getLines();
       });
     }else{
       var toast: Toast = {
@@ -73,29 +73,29 @@ export class MachinegroupComponent implements OnInit {
     }
   }
   delete() {
-    this.machinegroupService.deleteMachineGroup(this.machinegroup["_id"]).subscribe(data => {
+    this.lineService.deleteLine(this.line["_id"]).subscribe(data => {
       var toast: Toast = {
         type: 'success',
         title: 'Success',
-        body: 'Machine group deleted successfully.',
+        body: 'Line deleted successfully.',
         showCloseButton: true
       };
       this.toasterService.pop(toast);
       this.isList = true;
-      this.getAllMachineGroups();
+      this.getLines();
     });
   }
   update() {
-    this.machinegroupService.updateMachineGroup(this.machinegroup).subscribe(data => {
+    this.lineService.updateLine(this.line).subscribe(data => {
       var toast: Toast = {
         type: 'success',
         title: 'Success',
-        body: 'Machine group updated successfully.',
+        body: 'Line updated successfully.',
         showCloseButton: true
       };
       this.toasterService.pop(toast);
       this.isList = true;
-      this.getAllMachineGroups();
+      this.getLines();
     });
   }
   cancel() {
