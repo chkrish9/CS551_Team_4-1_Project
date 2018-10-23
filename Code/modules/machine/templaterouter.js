@@ -21,7 +21,7 @@ router.get('/get/:name',passport.authenticate('jwt',{session : false}),  (req, r
 
 //Create
 router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res, next) =>{
-    let newLine = new Line({
+    let newTemplate = new Template({
         name : req.body.name,
         description : req.body.description
     });
