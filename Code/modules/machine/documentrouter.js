@@ -8,12 +8,10 @@ router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, ne
     Doucment.getDocuments((err, data) => {
         res.json(data);
     });
-    //res.send('Redirected to Contant list');
 });
 
 router.get('/get/:name',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
     var name = req.params.name;
-    //console.log(name);
     Document.getDocumentNames(name,(err, data) => {
         res.json(data);
     });
