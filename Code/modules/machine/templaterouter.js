@@ -5,7 +5,7 @@ const Template = require('../../models/machine/Template');
 
 //Get
 router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
-    Line.getLines((err, data) => {
+    Line.getTemplates((err, data) => {
         res.json(data);
     });
     //res.send('Redirected to Contant list');
