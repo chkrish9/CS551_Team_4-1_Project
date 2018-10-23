@@ -7,20 +7,20 @@ import { ToasterService, Toast } from 'angular2-toaster';
   templateUrl: './document.component.html',
   styleUrls: ['./document.component.css']
 })
-export class LineComponent implements OnInit {
+export class DocumentComponent implements OnInit {
 
-  line = {
+  document = {
     "name": "",
     "description": ""
   };
-  lines: any;
+  documents: any;
   isList: boolean = true;
   isNew: boolean = true;
   constructor(
-    private lineService: LineService,
+    private documentService: DocumentService,
     private toasterService: ToasterService
   ) {
-    this.getLines();
+    this.getDocuments();
   }
 
   ngOnInit() {
