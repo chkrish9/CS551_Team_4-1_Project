@@ -40,12 +40,12 @@ export class DocumentComponent implements OnInit {
   populate(document) {
     this.isList = false;
     this.isNew = false;
-    this.line = line;
+    this.document = document;
   }
 
-  getLines() {
-    this.lineService.getLines().subscribe(data => {
-      this.lines = data;
+  getDocuments() {
+    this.documentService.getDocuments().subscribe(data => {
+      this.documents = data;
     });
   }
 
