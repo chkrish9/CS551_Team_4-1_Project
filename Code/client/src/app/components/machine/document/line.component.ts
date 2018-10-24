@@ -29,7 +29,7 @@ export class DocumentComponent implements OnInit {
   new() {
     this.isList = false;
     this.isNew = true;
-    this.line = {
+    this.document = {
       "name": "",
       "description": ""
     };
@@ -37,7 +37,7 @@ export class DocumentComponent implements OnInit {
   back() {
     this.isList = true;
   }
-  populate(line) {
+  populate(document) {
     this.isList = false;
     this.isNew = false;
     this.line = line;
