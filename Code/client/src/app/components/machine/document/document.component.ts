@@ -50,8 +50,8 @@ export class DocumentComponent implements OnInit {
   }
 
   save() {
-    if (this.line.name !== "" && this.line.description !== "") {
-      this.lineService.addLine(this.line).subscribe(data => {
+    if (this.document.name !== "" && this.document.description !== "") {
+      this.documentService.addDocument(this.line).subscribe(data => {
         var toast: Toast = {
           type: 'success',
           title: 'Success',
