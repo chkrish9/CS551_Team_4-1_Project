@@ -19,7 +19,7 @@ parts.findById(id, callback);
 }
 
 module.exports.addparts = function (newparts, callback) {
-    //console.log(newparts);
+    
     newparts.save(callback);
 }
 
