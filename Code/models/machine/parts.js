@@ -23,10 +23,6 @@ module.exports.addparts = function (newparts, callback) {
     newparts.save(callback);
 }
 
-
-
-
-
 module.exports.updateparts = function (id, updateQuery, callback) {
     parts.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
