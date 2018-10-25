@@ -53,7 +53,7 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
 
 //Delete
 router.delete('/delete/:id',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
-    Line.deleteLine(req.params.id,(err, result) => {
+    Template.deleteLine(req.params.id,(err, result) => {
         if (err) {
             res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });
         } else {
