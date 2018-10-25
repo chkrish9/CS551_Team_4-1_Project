@@ -18,6 +18,7 @@ module.exports.getMachineGroupById = function (id, callback) {
 }
 
 module.exports.addMachineGroup = function (newMachineGroup, callback) {
+    //console.log(newMachineGroup);
     newMachineGroup.save(callback);
 }
 
@@ -32,3 +33,11 @@ module.exports.deleteMachineGroup = function (id, callback) {
 module.exports.getMachineGroups = function (callback) {
     MachineGroup.find().exec(callback);
 }
+
+
+
+
+
+
+
+
