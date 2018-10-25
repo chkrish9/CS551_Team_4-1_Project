@@ -13,6 +13,8 @@ export class Privillages {
             {"name":"line","set":false,"group":"machine","order":3},
             {"name":"area","set":false,"group":"machine","order":2},
             {"name":"machinegroup","set":false,"group":"machine","order":1},
+            {"name":"settings","set":false,"group":"settings","order":1},
+            {"name":"import","set":false,"group":"settings","order":2},
         ];
     }
 }
