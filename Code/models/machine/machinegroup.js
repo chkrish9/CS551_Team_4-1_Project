@@ -11,7 +11,6 @@ const MachineGroupModel = mongoose.Schema({
         required: true
     }
 });
-
 const MachineGroup = module.exports = mongoose.model('MachineGroupModel', MachineGroupModel);
 
 module.exports.getMachineGroupById = function (id, callback) {
@@ -19,7 +18,6 @@ module.exports.getMachineGroupById = function (id, callback) {
 }
 
 module.exports.addMachineGroup = function (newMachineGroup, callback) {
-    //console.log(newMachineGroup);
     newMachineGroup.save(callback);
 }
 
