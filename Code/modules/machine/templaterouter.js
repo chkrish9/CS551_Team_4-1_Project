@@ -42,7 +42,7 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
         name : req.body.name,
         description : req.body.description
     };
-    Line.updateLine(id, update, (err, line) => {
+    Line.updateTemplate(id, update, (err, Template) => {
         if (err) {
             res.json({ msg: 'Failed while updating contact', status: 'error' });
         } else {
