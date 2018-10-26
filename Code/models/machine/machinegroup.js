@@ -34,6 +34,17 @@ module.exports.getMachineGroups = function (callback) {
     MachineGroup.find().exec(callback);
 }
 
+     
+
+
+
+
+
+
+
+
+
+
 
 
 
