@@ -11,8 +11,13 @@ const ImportModel = mongoose.Schema({
         required: true
     }
 });
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const Import = require('../../models/settings/import');
+const Settings = require('../../models/settings/import')
 
-const Import = module.exports = mongoose.model('ImportModel', ImportModel);
+
 
 
 
