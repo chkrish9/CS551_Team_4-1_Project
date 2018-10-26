@@ -11,7 +11,6 @@ const MachineGroupModel = mongoose.Schema({
         required: true
     }
 });
-
 const MachineGroup = module.exports = mongoose.model('MachineGroupModel', MachineGroupModel);
 
 module.exports.getMachineGroupById = function (id, callback) {
@@ -31,6 +30,35 @@ module.exports.deleteMachineGroup = function (id, callback) {
     MachineGroup.remove({ _id: id }, callback);
 }
 
-module.exports.getMachineGroups = function (callback) {
-    MachineGroup.find().exec(callback);
-}
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
