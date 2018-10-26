@@ -34,3 +34,21 @@ module.exports.deleteparts = function (id, callback) {
 module.exports.getparts = function (callback) {
     parts.find().exec(callback);
 }
+const Machine = module.exports = mongoose.model('MachineModel', MachineModel);
+
+module.exports.getMachineById = function (id, callback) {
+    Machine.findById(id, callback);
+}
+
+module.exports.addMachine = function (newMachine, callback) {
+    //console.log(newMachine);
+    newMachine.save(callback);
+}
+
+module.exports.updateMachine = function (id, updateQuery, callback) {
+    Machine.findByIdAndUpdate(id, { $set: updateQuery }, callback);
+}
+
+module.exports.deleteMachine = function (id, callback) {
+    Machine.remove({ _id: id }, callback);
+}
