@@ -19,7 +19,7 @@
         <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('part')" [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/part']">Part</li>
         <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('steps')" [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/steps']">Steps</li>
+            [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/steps']">Step Group</li>
         <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('template')" [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/template']">Template</li>
     </ul>

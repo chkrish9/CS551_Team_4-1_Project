@@ -8,6 +8,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ToasterModule } from 'angular2-toaster';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
@@ -82,6 +83,7 @@ const appRoutes : Routes = [
     HttpClientModule,
     NgbModule,
     NgxQRCodeModule,
+    FileUploadModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     BsDatepickerModule.forRoot(),

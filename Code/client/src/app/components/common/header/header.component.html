@@ -78,7 +78,7 @@
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('part')" [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/part']">Part</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('steps')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/steps']">Steps</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/steps']">Step Group</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('template')" [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/template']">Template</a></li>
           </ul>
