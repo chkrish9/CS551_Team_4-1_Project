@@ -7,6 +7,17 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./import.component.css']
 })
 export class ImportComponent implements OnInit {
+  moduleList = [
+    {
+      "value":"machine",
+      "key":"Machine"
+    }
+  ];
+  module:string="";
+  sample = {
+    "moduleName":"",
+    "url":""
+  }
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
   fileName: string = 'SheetJS.xlsx';
   data:any = [];
@@ -16,6 +27,11 @@ export class ImportComponent implements OnInit {
   ngOnInit() {
   }
 
+  modulechange(event){
+    console.log(event.target.value);
+    this.sample.moduleName = "Machine";
+    this.sample.url = "http://localhost:3000/import/getDownloadUrl"
+  }
 
 
 	onFileChange(evt: any) {

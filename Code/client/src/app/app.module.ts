@@ -8,6 +8,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ToasterModule } from 'angular2-toaster';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
@@ -23,11 +24,17 @@ import { LineComponent } from './components/machine/line/line.component';
 import { ReasonsComponent } from './components/machine/reasons/reasons.component';
 import { LabelComponent } from './components/common/label/label.component';
 import { TablelistComponent } from './components/common/tablelist/tablelist.component';
+import { ImportComponent } from './components/settings/import/import.component';
+import { SettingsComponent } from './components/settings/settings/settings.component';
+import { TemplateComponent } from './components/machine/template/template.component';
+import { StepsComponent } from './components/machine/steps/steps.component';
+import { PartComponent } from './components/machine/part/part.component';
+import { DocumentComponent } from './components/machine/document/document.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/common/auth.service';
 import { UserService } from './services/user/user.service';
-import { ImportComponent } from './components/settings/import/import.component';
+
 
 const appRoutes : Routes = [
   {path : '', component: LoginComponent, canActivate:[AuthGuard] },
@@ -40,6 +47,11 @@ const appRoutes : Routes = [
   {path : 'line', component: LineComponent, canActivate:[AuthGuard] },
   {path : 'reasons', component: ReasonsComponent, canActivate:[AuthGuard] },
   {path : 'import', component: ImportComponent, canActivate:[AuthGuard] },
+  {path : 'settings', component: SettingsComponent, canActivate:[AuthGuard] },
+  {path : 'document', component: DocumentComponent, canActivate:[AuthGuard] },
+  {path : 'part', component: PartComponent, canActivate:[AuthGuard] },
+  {path : 'steps', component: StepsComponent, canActivate:[AuthGuard] },
+  {path : 'template', component: TemplateComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({
@@ -58,7 +70,12 @@ const appRoutes : Routes = [
     ReasonsComponent,
     LabelComponent,
     TablelistComponent,
-    ImportComponent
+    ImportComponent,
+    SettingsComponent,
+    TemplateComponent,
+    StepsComponent,
+    PartComponent,
+    DocumentComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +83,7 @@ const appRoutes : Routes = [
     HttpClientModule,
     NgbModule,
     NgxQRCodeModule,
+    FileUploadModule,
     BrowserAnimationsModule,
     ToasterModule.forRoot(),
     BsDatepickerModule.forRoot(),
