@@ -1,3 +1,2 @@
-<p>
-  import works!
-</p>
+<input type="file" (change)="onFileChange($event)" multiple="false" />
+<p *ngFor="let i of data">{{i}}</p>

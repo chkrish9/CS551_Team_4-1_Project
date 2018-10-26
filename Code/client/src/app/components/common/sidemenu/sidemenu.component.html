@@ -22,4 +22,10 @@
             [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/usergroup']">User
             group</li>
     </ul>
+    <ul class="list-group" *ngIf="authService.isRouteDisplay('settings')">
+        <li *ngIf="authService.loggedIn() && authService.checkPrivilege('settings')" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/settings']">Settings</li>
+        <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('import')" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/import']">Import</li>
+    </ul>
 </div>

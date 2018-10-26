@@ -32,6 +32,7 @@
     "rxjs": "~6.2.0",
     "rxjs-compat": "^6.3.3",
     "underscore": "^1.9.1",
+    "xlsx": "^0.14.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
