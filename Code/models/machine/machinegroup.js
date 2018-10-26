@@ -30,9 +30,7 @@ module.exports.deleteMachineGroup = function (id, callback) {
     MachineGroup.remove({ _id: id }, callback);
 }
 
-module.exports.getMachineGroups = function (callback) {
-    MachineGroup.find().exec(callback);
-}
+
 
      
 
