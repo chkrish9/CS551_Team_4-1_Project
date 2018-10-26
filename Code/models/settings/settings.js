@@ -18,9 +18,6 @@ module.exports.getImportById = function (id, callback) {
     Import.findById(id, callback);
 }
 
-module.exports.updateImport = function (id, updateQuery, callback) {
-    Import.findByIdAndUpdate(id, { $set: updateQuery }, callback);
-}
 
 
 
