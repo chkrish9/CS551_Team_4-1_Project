@@ -23,8 +23,5 @@ module.exports.addImport = function (newImport, callback) {
     newLine.save(callback);
 }
 
-module.exports.updateImport = function (id, updateQuery, callback) {
-    Import.findByIdAndUpdate(id, { $set: updateQuery }, callback);
-}
 
 
