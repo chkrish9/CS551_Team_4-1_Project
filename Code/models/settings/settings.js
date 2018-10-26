@@ -22,13 +22,6 @@ module.exports.updateImport = function (id, updateQuery, callback) {
     Import.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
 
-module.exports.deleteImport = function (id, callback) {
-    Import.remove({ _id: id }, callback);
-}
-
-module.exports.getImports = function (callback) {
-    Import.find().exec(callback);
-}
 
 
 
