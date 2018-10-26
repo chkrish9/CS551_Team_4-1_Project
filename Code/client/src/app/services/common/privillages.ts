@@ -15,6 +15,10 @@ export class Privillages {
             {"name":"machinegroup","set":false,"group":"machine","order":1},
             {"name":"settings","set":false,"group":"settings","order":1},
             {"name":"import","set":false,"group":"settings","order":2},
+            {"name":"document","set":false,"group":"machine","order":5},
+            {"name":"part","set":false,"group":"machine","order":6},
+            {"name":"steps","set":false,"group":"machine","order":7},
+            {"name":"template","set":false,"group":"machine","order":8},
         ];
     }
 }

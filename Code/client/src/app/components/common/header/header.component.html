@@ -18,7 +18,7 @@
           [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('user')"><a>User</a></li>
         <li *ngIf="authService.loggedIn() && authService.hasPrevillage('machine')" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('machine')"><a>Machine</a></li>
-          <li *ngIf="authService.loggedIn() && authService.hasPrevillage('machine')" [routerLinkActive]="['active']"
+        <li *ngIf="authService.loggedIn() && authService.hasPrevillage('machine')" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact : true }" (click)="updateMenu('settings')"><a>Settings</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -54,7 +54,8 @@
             <li *ngIf="authService.loggedIn() && authService.checkPrivilege('user')" [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/user']">User</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('usergroup')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/usergroup']">User group</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/usergroup']">User
+                group</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -68,9 +69,18 @@
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('reasons')" [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/reasons']">Reasons</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('machinegroup')" [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/machinegroup']">Machine group</a></li>
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/machinegroup']">Machine
+                group</a></li>
             <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('machine')" [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/machine']">Machine</a></li>
+            <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('document')" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/document']">Documents</a></li>
+            <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('part')" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/part']">Part</a></li>
+            <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('steps')" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/steps']">Steps</a></li>
+            <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('template')" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact : true }" (click)="isCollapsed = !isCollapsed"><a [routerLink]="['/template']">Template</a></li>
           </ul>
         </li>
         <li class="dropdown">
