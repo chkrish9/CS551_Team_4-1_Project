@@ -96,35 +96,69 @@
             </div>
           </div>
           <div>
-            <h4>Add Document</h4>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]="search" name="search" (input)="onSearchChange($event.target.value)">
-                <div *ngIf="showResults" id="txtSearch" class="auto-complete-style">
-                  <p *ngFor="let result of searchResults" (click)="selectedItem(result)" class="border-bottom">{{result.name}}</p>
+            <div>
+              <h4>Add Document</h4>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="search" name="search" (input)="onSearchChange($event.target.value)">
+                  <div *ngIf="showResults" id="txtSearch" class="auto-complete-style">
+                    <p *ngFor="let result of searchResults" (click)="selectedItem(result)" class="border-bottom">{{result.name}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <input type="button" class="form-control btn btn-primary" (click)="addLineToArea(search)" value="Add">
                 </div>
               </div>
             </div>
-            <div class="col-sm-2">
-              <div class="form-group">
-                <input type="button" class="form-control btn btn-primary" (click)="addLineToArea(search)" value="Add">
-              </div>
+            <div>
+              <table class="table">
+                <tr>
+                  <th>Document Name</th>
+                  <th>Delete</th>
+                </tr>
+                <tr *ngFor="let document of step.documents">
+                  <td>{{document.name}}</td>
+                  <td><button type="button" (click)="deleteLine(line)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                </tr>
+              </table>
             </div>
           </div>
           <div>
-            <table class="table">
-              <tr>
-                <th>Document Name</th>
-                <th>Delete</th>
-              </tr>
-              <tr *ngFor="let document of step.documents">
-                <td>{{document.name}}</td>
-                <td><button type="button" (click)="deleteLine(line)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
-              </tr>
-            </table>
-          </div>
+              <div>
+                <h4>Add Part</h4>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="search" name="search" (input)="onSearchChange($event.target.value)">
+                    <div *ngIf="showResults" id="txtSearch" class="auto-complete-style">
+                      <p *ngFor="let result of searchResults" (click)="selectedItem(result)" class="border-bottom">{{result.name}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <input type="button" class="form-control btn btn-primary" (click)="addLineToArea(search)" value="Add">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <table class="table">
+                  <tr>
+                    <th>Part Name</th>
+                    <th>Delete</th>
+                  </tr>
+                  <tr *ngFor="let part of step.parts">
+                    <td>{{part.name}}</td>
+                    <td><button type="button" (click)="deleteLine(part)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
