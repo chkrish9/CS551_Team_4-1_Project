@@ -14,9 +14,18 @@ const ImportModel = mongoose.Schema({
 
 const Import = module.exports = mongoose.model('ImportModel', ImportModel);
 
-module.exports.getImportById = function (id, callback) {
-    Import.findById(id, callback);
-}
+const settingsmodule = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    }
+});
+
+const Import = module.exports = mongoose.model('ImportModel', ImportModel);
 
 
 
