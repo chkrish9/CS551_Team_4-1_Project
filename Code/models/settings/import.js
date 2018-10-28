@@ -6,29 +6,16 @@ const ImportModel = mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
+    date:{
+        type: String
     }
 });
 
 const Import = module.exports = mongoose.model('ImportModel', ImportModel);
 
-module.exports.getImportById = function (id, callback) {
-    Import.findById(id, callback);
-}
-
 module.exports.addImport = function (newImport, callback) {
     //console.log(newLine);
     newLine.save(callback);
-}
-
-module.exports.updateImport = function (id, updateQuery, callback) {
-    Import.findByIdAndUpdate(id, { $set: updateQuery }, callback);
-}
-
-module.exports.deleteImport = function (id, callback) {
-    Import.remove({ _id: id }, callback);
 }
 
 module.exports.getImports = function (callback) {

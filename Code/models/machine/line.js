@@ -18,6 +18,9 @@ module.exports.getLineById = function (id, callback) {
     Line.findById(id, callback);
 }
 
+module.exports.getLineByName = function (name, callback) {
+    Line.find({name:name},callback);
+}
 
 
 module.exports.updateLine = function (id, updateQuery, callback) {

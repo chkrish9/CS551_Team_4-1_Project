@@ -17,6 +17,10 @@ module.exports.getMachineGroupById = function (id, callback) {
     MachineGroup.findById(id, callback);
 }
 
+module.exports.getMachineGroupByName = function (name, callback) {
+    MachineGroup.find({name:name},callback);
+}
+
 module.exports.addMachineGroup = function (newMachineGroup, callback) {
     //console.log(newMachineGroup);
     newMachineGroup.save(callback);

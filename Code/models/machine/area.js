@@ -23,6 +23,10 @@ module.exports.getAreaById = function (id, callback) {
     Area.findById(id, callback);
 }
 
+module.exports.getAreaByName = function (name, callback) {
+    Area.find({name:name},callback);
+}
+
 module.exports.addArea = function (newArea, callback) {
     //console.log(newArea);
     newArea.save(callback);

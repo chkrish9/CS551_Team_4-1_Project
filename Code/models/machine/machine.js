@@ -51,6 +51,11 @@ module.exports.addMachine = function (newMachine, callback) {
     newMachine.save(callback);
 }
 
+module.exports.addMachines = function (machines, callback) {
+    //console.log(newMachine);
+    Machine.collection.insert(machines,callback);
+}
+
 module.exports.updateMachine = function (id, updateQuery, callback) {
     Machine.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
