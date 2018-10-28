@@ -1,40 +1,25 @@
 const mongoose = require('mongoose');
 
-//Import schema
-const ImportModel = mongoose.Schema({
+//Setting schema
+const SettingModel = mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    }
-});
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
-const Import = require('../../models/settings/import');
-const Settings = require('../../models/settings/import')
-
-const mongoose = require('mongoose');
-
-//Import schema
-const ImportModel = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
+    value: {
         type: String,
         required: true
     }
 });
 
-const Import = module.exports = mongoose.model('ImportModel', ImportModel);
+const Setting = module.exports = mongoose.model('SettingModel', SettingModel);
 
-module.exports.getImportById = function (id, callback) {
-    Import.findById(id, callback);
+module.exports.getSettingById = function (id, callback) {
+    Setting.findById(id, callback);
+}
+
+module.exports.getSettingById = function (id, callback) {
+    Setting.findById(id, callback);
 }
 
 

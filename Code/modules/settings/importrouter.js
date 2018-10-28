@@ -44,7 +44,18 @@ router.post('/create', (req, res, next) => {
                 });
             });
         }
-        res.send("Machine data inserted successfully");
+        let today = new Date();
+        let newImport = new Import({
+            moduleName: req.body.moduleName,
+            date: today.getMonth()+"-"+today.getDate()+"-"+today.getFullYear()
+        });
+        Import.addImport(newImport,(err, importData) => {
+            if (err) {
+                res.json({ success: false, msg: "Failed to import." });
+            } else {
+                res.json({success : true, msg : "Machine data inserted successfully"});
+            }
+        } )
     }
 });
 

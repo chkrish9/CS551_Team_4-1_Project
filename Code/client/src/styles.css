@@ -16,6 +16,7 @@
 .border-style{
     border: 1px solid #d3d3d3;
     padding: 5px;
+    margin-bottom: 10px;
 }
 
 .auto-complete-style{
