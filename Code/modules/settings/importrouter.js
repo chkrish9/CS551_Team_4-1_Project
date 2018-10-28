@@ -15,7 +15,7 @@ router.get('/importHistory', passport.authenticate('jwt', { session: false }), (
 });
 
 //Create
-router.post('/create', (req, res, next) => {
+router.post('/create', passport.authenticate('jwt', { session: false }),(req, res, next) => {
     if (req.body.moduleName === "machine") {
         var data = req.body.data;
         for (let i = 0; i < data.length; i++) {

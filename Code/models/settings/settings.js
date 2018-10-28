@@ -18,8 +18,16 @@ module.exports.getSettingById = function (id, callback) {
     Setting.findById(id, callback);
 }
 
-module.exports.getSettingById = function (id, callback) {
-    Setting.findById(id, callback);
+module.exports.updateSetting = function (id, updateQuery, callback) {
+    Setting.findByIdAndUpdate(id, { $set: updateQuery }, callback);
+}
+
+module.exports.getSettings = function (callback) {
+    Setting.find().exec(callback);
+}
+
+module.exports.addSetting = function (newSetting, callback) {
+    newSetting.save(callback);
 }
 
 
