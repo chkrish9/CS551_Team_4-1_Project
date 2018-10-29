@@ -7,9 +7,9 @@
   <div class="col-sm-4">
     <div class="form-group">
       <label>Choose Category</label>
-      <select class="form-control" [(ngModel)]="category" name="category">
+      <select class="form-control" [(ngModel)]="category" name="category" (change)="settingchange($event)">
         <option value="">--Select Category--</option>
-        <option *ngFor="let c of categoryList" value="{{c.value}}">{{c.key}}</option>
+        <option *ngFor="let c of categoryList" value="{{c._id}}">{{c.name}}</option>
       </select>
     </div>
   </div>
@@ -17,8 +17,8 @@
 <div class="row" *ngIf="category!==''">
   <div class="col-sm-4">
     <div class="form-group">
-      <label>Host</label>
-      <input type="text" class="form-control" />
+      <label>Value</label>
+      <input type="text" class="form-control" [(ngModel)]="settingValue" name="settingValue"/>
     </div>
   </div>
 </div>
