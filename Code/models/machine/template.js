@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 //Template schema
 const TemplateModel = mongoose.Schema({
@@ -9,30 +10,40 @@ const TemplateModel = mongoose.Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    machine: {
+        required:true,
+        type: Schema.Types.ObjectId,
+        ref: 'MachineModel'
+    },
+    reason: {
+        required:true,
+        type: Schema.Types.ObjectId,
+        ref: 'ReasonModel'
+    },
 });
 
 const Template = module.exports = mongoose.model('TemplateModel', TemplateModel);
 
 module.exports.getTemplateById = function (id, callback) {
-    Line.findById(id, callback);
+    Template.findById(id, callback);
 }
 
 module.exports.addTemplate = function (newTemplate, callback) {
     //console.log(newTemplate);
-    newLine.save(callback);
+    newTemplate.save(callback);
 }
 
 module.exports.updateTemplate = function (id, updateQuery, callback) {
-    Line.findByIdAndUpdate(id, { $set: updateQuery }, callback);
+    Template.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
 
 module.exports.deleteTemplate = function (id, callback) {
-    Line.remove({ _id: id }, callback);
+    Template.remove({ _id: id }, callback);
 }
 
-module.exports.getTemplate = function (callback) {
-    Line.find().exec(callback);
+module.exports.getTemplates = function (callback) {
+    Template.find().exec(callback);
 }
 
 module.exports.getTemplateNames = function(name,callback){

@@ -5,6 +5,7 @@ const Template = require('../../models/machine/Template');
 
 //Get
 router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
+    console.log("all");
     Template.getTemplates((err, data) => {
         res.json(data);
     });
@@ -21,9 +22,12 @@ router.get('/get/:name',passport.authenticate('jwt',{session : false}),  (req, r
 
 //Create
 router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res, next) =>{
+    console.log(req.body);
     let newTemplate = new Template({
         name : req.body.name,
-        description : req.body.description
+        description : req.body.description,
+        machine : req.body.machine,
+        reason: req.body.reason
     });
     Template.addTemplate(newTemplate, (err, Template) =>{
         if(err){
@@ -40,7 +44,9 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
     var id = req.params.id;
     var update = {
         name : req.body.name,
-        description : req.body.description
+        description : req.body.description,
+        machine : req.body.machine,
+        reason: req.body.reason
     };
     Template.updateTemplate(id, update, (err, Template) => {
         if (err) {

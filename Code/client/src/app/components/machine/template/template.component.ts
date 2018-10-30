@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MachineService } from '../../../services/machine/machine.service';
 import { ReasonService } from '../../../services/machine/reason.service';
+import { TemplateService } from '../../../services/machine/template.service';
+import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
   selector: 'app-template',
@@ -12,13 +14,14 @@ export class TemplateComponent implements OnInit {
     "name": "",
     "description": "",
     "reason": "",
-    "equipent": ""
+    "machine": ""
   };
   documents: any;
   isList: boolean = true;
   isNew: boolean = true;
   equipentList: any;
   reasonList: any;
+  templates:any;
 
   /*Auto complete variables start */
   search: string;
@@ -28,7 +31,9 @@ export class TemplateComponent implements OnInit {
 
   constructor(
     private machineService: MachineService,
-    private reasonService: ReasonService
+    private reasonService: ReasonService,
+    private templateService:TemplateService,
+    private toasterService: ToasterService
   ) {
     this.machineService.getMachines().subscribe(data => {
       this.equipentList = data;
@@ -36,6 +41,7 @@ export class TemplateComponent implements OnInit {
     this.reasonService.getAllReasons().subscribe(data => {
       this.reasonList = data;
     });
+    this.getTemplates();
   }
 
   ngOnInit() {
@@ -48,7 +54,7 @@ export class TemplateComponent implements OnInit {
       "name": "",
       "description": "",
       "reason": "",
-      "equipent": ""
+      "machine": ""
     };
   }
   back() {
@@ -60,18 +66,60 @@ export class TemplateComponent implements OnInit {
     this.template = template;
   }
 
-  getSteps() {
-
+  getTemplates() {
+    this.templateService.getAllTemplates().subscribe(data => {
+      this.templates = data;
+    });
   }
 
   save() {
-
+    if (this.template.name !== "" && this.template.description !== "") {
+      this.templateService.addTemplate(this.template).subscribe(data => {
+        var toast: Toast = {
+          type: 'success',
+          title: 'Success',
+          body: 'Template saved successfully.',
+          showCloseButton: true
+        };
+        this.toasterService.pop(toast);
+        this.isList = true;
+        this.getTemplates();
+      });
+    }else{
+      var toast: Toast = {
+        type: 'error',
+        title: 'Error',
+        body: 'Please fill the all the details.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+    }
   }
   delete() {
-
+    this.templateService.deleteTemplate(this.template["_id"]).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Template deleted successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+      this.isList = true;
+      this.getTemplates();
+    });
   }
   update() {
-
+    this.templateService.updateTemplate(this.template).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Template updated successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+      this.isList = true;
+      this.getTemplates();
+    });
   }
   cancel() {
     this.isList = true;

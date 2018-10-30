@@ -30,8 +30,8 @@
       <div class="col-sm-4">
         <div class="form-group">
           <label>Equipent</label>
-          <select class="form-control" [(ngModel)]="template.equipent" name="equipent">
-            <option value="">--Select Equipent--</option>
+          <select class="form-control" [(ngModel)]="template.machine" name="machine">
+            <option value="">--Select Machine--</option>
             <option *ngFor="let equipent of equipentList" value="{{equipent._id}}">{{equipent.name}}</option>
           </select>
         </div>
