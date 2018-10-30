@@ -8,6 +8,7 @@ var machinegroups = require('../modules/machine/machinegrouprouter');
 var areas = require('../modules/machine/arearouter');
 var machines = require('../modules/machine/machinerouter');
 var settings = require('../modules/settings/settingsrouter');
+var part = require('../modules/machine/partrouter');
 
 module.exports = function router(app){
     app.use('/users',users);
@@ -20,4 +21,5 @@ module.exports = function router(app){
     app.use('/machine',machines);
     app.use('/import',importrouter);
     app.use('/settings',settings);
+    app.use('/part',part);
 };

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToasterService, Toast } from 'angular2-toaster';
+import { PartService } from '../../../services/machine/part.service';
 
 @Component({
   selector: 'app-part',
@@ -9,12 +11,17 @@ export class PartComponent implements OnInit {
   part = {
     "name": "",
     "description": "",
+    "isSerial":"",
+    "availableQuantity":"",
     "qrCode":""
   };
   parts: any;
   isList: boolean = true;
   isNew: boolean = true;
-  constructor() { }
+  constructor(
+    private partService: PartService,
+    private toasterService: ToasterService
+  ) { }
 
   ngOnInit() {
   }
@@ -25,6 +32,8 @@ export class PartComponent implements OnInit {
     this.part = {
       "name": "",
       "description": "",
+      "isSerial":"",
+      "availableQuantity":"",
       "qrCode":""
     };
   }
@@ -38,17 +47,59 @@ export class PartComponent implements OnInit {
   }
 
   getParts() {
-    
+    this.partService.getParts().subscribe(data => {
+      this.parts = data;
+    });
   }
 
   save() {
-   
+    if (this.part.name !== "" && this.part.description !== "") {
+      this.partService.addPart(this.part).subscribe(data => {
+        var toast: Toast = {
+          type: 'success',
+          title: 'Success',
+          body: 'Part saved successfully.',
+          showCloseButton: true
+        };
+        this.toasterService.pop(toast);
+        this.isList = true;
+        this.getParts();
+      });
+    } else {
+      var toast: Toast = {
+        type: 'error',
+        title: 'Error',
+        body: 'Please fill the all the details.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+    }
   }
   delete() {
-    
+    this.partService.deletePart(this.part["_id"]).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Part deleted successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+      this.isList = true;
+      this.getParts();
+    });
   }
   update() {
-   
+    this.partService.updatePart(this.part).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Part updated successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+      this.isList = true;
+      this.getParts();
+    });
   }
   cancel() {
     this.isList = true;

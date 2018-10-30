@@ -7,8 +7,16 @@ const PartModel = mongoose.Schema({
         required: true
     },
     description: {
-        type: String,
-        required: true
+        type: String
+    },
+    isSerial:{
+        type: String
+    },
+    availableQuantity:{
+        type: Number
+    },
+    qrCode: {
+        type: String
     }
 });
 
@@ -36,6 +44,5 @@ module.exports.getParts = function (callback) {
 }
 
 module.exports.getPartNames = function(name,callback){
-    //console.log(name);
     Part.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
 }
