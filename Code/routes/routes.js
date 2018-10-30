@@ -9,6 +9,7 @@ var areas = require('../modules/machine/arearouter');
 var machines = require('../modules/machine/machinerouter');
 var settings = require('../modules/settings/settingsrouter');
 var part = require('../modules/machine/partrouter');
+var document = require('../modules/machine/documentrouter');
 
 module.exports = function router(app){
     app.use('/users',users);
@@ -22,4 +23,5 @@ module.exports = function router(app){
     app.use('/import',importrouter);
     app.use('/settings',settings);
     app.use('/part',part);
+    app.use('/document',document);
 };

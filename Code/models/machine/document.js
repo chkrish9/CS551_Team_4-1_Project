@@ -9,6 +9,12 @@ const DocumentModel = mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    uploadFileName :{
+        type:String
+    },
+    originalFileName :{
+        type:String
     }
 });
 

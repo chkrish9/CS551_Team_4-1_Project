@@ -21,7 +21,9 @@ export class PartComponent implements OnInit {
   constructor(
     private partService: PartService,
     private toasterService: ToasterService
-  ) { }
+  ) { 
+    this.getParts();
+  }
 
   ngOnInit() {
   }

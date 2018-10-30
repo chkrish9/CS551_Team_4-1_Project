@@ -2,16 +2,19 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Document = require('../../models/machine/document');
+const upload = require('../../config/upload').upload;
 
 //Get
 router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
-    Doucment.getDocuments((err, data) => {
+    Document.getDocuments((err, data) => {
         res.json(data);
     });
+    //res.send('Redirected to Contant list');
 });
 
 router.get('/get/:name',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
     var name = req.params.name;
+    //console.log(name);
     Document.getDocumentNames(name,(err, data) => {
         res.json(data);
     });
@@ -21,13 +24,15 @@ router.get('/get/:name',passport.authenticate('jwt',{session : false}),  (req, r
 router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res, next) =>{
     let newDocument = new Document({
         name : req.body.name,
-        description : req.body.description
+        description : req.body.description,
+        uploadFileName: req.body.uploadFileName,
+        originalFileName: req.body.originalFileName
     });
-    Document.addDocument(newDocument, (err, document) =>{
+    Document.addDocument(newDocument, (err, line) =>{
         if(err){
-            res.json({success : false, msg : "Failed to Add user."});
+            res.json({success : false, msg : "Failed to Add Document."});
         }else{
-            res.json({success : true, msg : "User Added."});
+            res.json({success : true, msg : "Document Added."});
         }
     });
 });
@@ -38,13 +43,15 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
     var id = req.params.id;
     var update = { 
         name : req.body.name,
-        description : req.body.description
+        description : req.body.description,
+        uploadFileName: req.body.uploadFileName,
+        originalFileName: req.body.originalFileName
     };
-    Document.updateDocument(id, update, (err, document) => {
+    Document.updateDocument(id, update, (err, line) => {
          if (err) {
-            res.json({ msg: 'Failed while updating contact', status: 'error' });
+            res.json({ msg: 'Failed while updating Document', status: 'error' });
         } else {
-            res.json({ msg: 'new contact added successfully' });
+            res.json({ msg: 'new Document added successfully' });
         }
     });
 });
@@ -53,11 +60,20 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
 router.delete('/delete/:id',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
     Document.deleteDocument(req.params.id,(err, result) => {
         if (err) {
-            res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });
+            res.json({ msg: 'Failed while deleting Document', status: 'error',success:false });
         } else {
-            res.json({ msg: 'new contact added successfully' });
+            res.json({ msg: 'Document deleted successfully' });
         }
     })
 });
 
+//Post
+router.post("/upload", (req, res, next) => {
+    upload(req, res, (error) => {
+        if (error) {
+            return res.status(501).json({ error: error });
+        }
+        res.json({ originalname: req.file.originalname, uploadName: req.file.filename });
+    });
+});
 module.exports = router;
