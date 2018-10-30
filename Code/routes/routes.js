@@ -11,6 +11,7 @@ var settings = require('../modules/settings/settingsrouter');
 var part = require('../modules/machine/partrouter');
 var document = require('../modules/machine/documentrouter');
 var template = require('../modules/machine/templaterouter');
+var stepgroup = require('../modules/machine/stepgrouprouter');
 
 module.exports = function router(app){
     app.use('/users',users);
@@ -26,4 +27,5 @@ module.exports = function router(app){
     app.use('/part',part);
     app.use('/document',document);
     app.use('/template',template);
+    app.use('/stepgroup',stepgroup);
 };

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StepgroupService } from '../../../services/machine/stepgroup.service';
+import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
   selector: 'app-steps',
@@ -10,7 +12,12 @@ export class StepsComponent implements OnInit {
     "name": "",
     "description": "",
   };
+  stepgroups: any;
   steps: any;
+  step= {
+    "name": "",
+    "description": "",
+  };
   isList: boolean = true;
   isNew: boolean = true;
 
@@ -19,7 +26,12 @@ export class StepsComponent implements OnInit {
   searchResults: any;
   showResults: boolean;
   /*Auto complete variables end */
-  constructor() { }
+  constructor(
+    private stepgroupService: StepgroupService,
+    private toasterService: ToasterService
+  ) {
+    this.getStepGroups();
+   }
 
   ngOnInit() {
   }
@@ -28,6 +40,10 @@ export class StepsComponent implements OnInit {
     this.isList = false;
     this.isNew = true;
     this.stepgroup = {
+      "name": "",
+      "description": "",
+    };
+    this.step = {
       "name": "",
       "description": "",
     };
@@ -41,18 +57,60 @@ export class StepsComponent implements OnInit {
     this.stepgroup = stepgroup;
   }
 
-  getSteps() {
-
+  getStepGroups() {
+    this.stepgroupService.getAllStepgroups().subscribe(data => {
+      this.stepgroups = data;
+    });
   }
 
   save() {
-
+    if (this.stepgroup.name !== "" && this.stepgroup.description !== "") {
+      this.stepgroupService.addStepgroup(this.stepgroup).subscribe(data => {
+        var toast: Toast = {
+          type: 'success',
+          title: 'Success',
+          body: 'Stepgroup saved successfully.',
+          showCloseButton: true
+        };
+        this.toasterService.pop(toast);
+        this.isList = true;
+        this.getStepGroups();
+      });
+    }else{
+      var toast: Toast = {
+        type: 'error',
+        title: 'Error',
+        body: 'Please fill the all the details.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+    }
   }
   delete() {
-
+    this.stepgroupService.deleteStepgroup(this.stepgroup["_id"]).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Stepgroup deleted successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+      this.isList = true;
+      this.getStepGroups();
+    });
   }
   update() {
-
+    this.stepgroupService.updateStepgroup(this.stepgroup).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'Stepgroup updated successfully.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+      this.isList = true;
+      this.getStepGroups();
+    });
   }
   cancel() {
     this.isList = true;

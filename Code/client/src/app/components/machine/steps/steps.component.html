@@ -3,10 +3,10 @@
     <h2 class="pull-left">Step Group List</h2>
     <button class="btn btn-primary pull-right margin-top-20px" type="button" (click)="new()">New</button>
   </div>
-  <div class="col-sm-3" *ngFor="let step of steps">
-    <div class="border-style" (click)="populate(step)">
-      <p>Name : {{step.name}}</p>
-      <p>Description: {{step.description}}</p>
+  <div class="col-sm-3" *ngFor="let stepgroup of stepgroups">
+    <div class="border-style" (click)="populate(stepgroup)">
+      <p>Name : {{stepgroup.name}}</p>
+      <p>Description: {{stepgroup.description}}</p>
     </div>
   </div>
 </div>
