@@ -36,7 +36,7 @@
     </div>
     <div class="row">
       <div class="col-sm-2">
-        <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#qrModal">Add Step</button>
+        <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#qrModal" (click)="newStep()">Add Step</button>
       </div>
     </div>
     <div class="row margin-top-20px">
@@ -47,7 +47,7 @@
             <th>Edit</th>
             <th>Delete</th>
           </tr>
-          <tr *ngFor="let step of steps">
+          <tr *ngFor="let step of stepgroup.steps">
             <td>{{step.name}}</td>
             <td><button type="button" (click)="deleteLine(line)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
           </tr>
@@ -102,15 +102,15 @@
             <div class="row">
               <div class="col-sm-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" [(ngModel)]="search" name="search" (input)="onSearchChange($event.target.value)">
-                  <div *ngIf="showResults" id="txtSearch" class="auto-complete-style">
-                    <p *ngFor="let result of searchResults" (click)="selectedItem(result)" class="border-bottom">{{result.name}}</p>
+                  <input type="text" class="form-control" [(ngModel)]="documentsearch" name="documentsearch" (input)="onSearchChange($event.target.value, 'document')">
+                  <div *ngIf="documentshowResults" id="txtSearch" class="auto-complete-style">
+                    <p *ngFor="let result of documentsearchResults" (click)="selectedItem(result,'document')" class="border-bottom">{{result.name}}</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-2">
                 <div class="form-group">
-                  <input type="button" class="form-control btn btn-primary" (click)="addLineToArea(search)" value="Add">
+                  <input type="button" class="form-control btn btn-primary" (click)="addDocumentToStep(documentsearch)" value="Add">
                 </div>
               </div>
             </div>
@@ -122,7 +122,7 @@
                 </tr>
                 <tr *ngFor="let document of step.documents">
                   <td>{{document.name}}</td>
-                  <td><button type="button" (click)="deleteLine(line)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                  <td><button type="button" (click)="deleteDocument(document)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
                 </tr>
               </table>
             </div>
@@ -134,15 +134,15 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="search" name="search" (input)="onSearchChange($event.target.value)">
-                    <div *ngIf="showResults" id="txtSearch" class="auto-complete-style">
-                      <p *ngFor="let result of searchResults" (click)="selectedItem(result)" class="border-bottom">{{result.name}}</p>
+                    <input type="text" class="form-control" [(ngModel)]="partsearch" name="partsearch" (input)="onSearchChange($event.target.value,'step')">
+                    <div *ngIf="partshowResults" id="txtSearch" class="auto-complete-style">
+                      <p *ngFor="let result of partsearchResults" (click)="selectedItem(result,'step')" class="border-bottom">{{result.name}}</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <div class="form-group">
-                    <input type="button" class="form-control btn btn-primary" (click)="addLineToArea(search)" value="Add">
+                    <input type="button" class="form-control btn btn-primary" (click)="addPartToStep(partsearch)" value="Add">
                   </div>
                 </div>
               </div>
@@ -154,7 +154,7 @@
                   </tr>
                   <tr *ngFor="let part of step.parts">
                     <td>{{part.name}}</td>
-                    <td><button type="button" (click)="deleteLine(part)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                    <td><button type="button" (click)="deletePart(part)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
                   </tr>
                 </table>
               </div>
@@ -162,7 +162,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add Step</button>
+          <button type="button" class="btn btn-primary" (click)="addStepToStepGroup()">Add Step</button>
         </div>
       </div>
     </div>

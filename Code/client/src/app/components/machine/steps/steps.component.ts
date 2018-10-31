@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StepgroupService } from '../../../services/machine/stepgroup.service';
+import { DocumentService } from '../../../services/machine/document.service';
+import { PartService } from '../../../services/machine/part.service';
 import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
@@ -11,27 +13,35 @@ export class StepsComponent implements OnInit {
   stepgroup = {
     "name": "",
     "description": "",
+    "steps": []
   };
   stepgroups: any;
   steps: any;
-  step= {
+  step = {
     "name": "",
     "description": "",
+    "parts": [],
+    "documents": []
   };
   isList: boolean = true;
   isNew: boolean = true;
 
   /*Auto complete variables start */
-  search: string;
-  searchResults: any;
-  showResults: boolean;
+  documentsearch: string;
+  documentsearchResults: any;
+  documentshowResults: boolean;
+  partsearch: string;
+  partsearchResults: any;
+  partshowResults: boolean;
   /*Auto complete variables end */
   constructor(
     private stepgroupService: StepgroupService,
+    private documentService: DocumentService,
+    private partService: PartService,
     private toasterService: ToasterService
   ) {
     this.getStepGroups();
-   }
+  }
 
   ngOnInit() {
   }
@@ -42,10 +52,13 @@ export class StepsComponent implements OnInit {
     this.stepgroup = {
       "name": "",
       "description": "",
+      "steps": []
     };
     this.step = {
       "name": "",
       "description": "",
+      "parts": [],
+      "documents": []
     };
   }
   back() {
@@ -76,7 +89,7 @@ export class StepsComponent implements OnInit {
         this.isList = true;
         this.getStepGroups();
       });
-    }else{
+    } else {
       var toast: Toast = {
         type: 'error',
         title: 'Error',
@@ -117,32 +130,71 @@ export class StepsComponent implements OnInit {
   }
 
   /*Auto complete methods start */
-  onSearchChange(value) {
-    if (value.length > 2) {
-      // this.userService.getUserName(value).subscribe(data => {
-      //   this.showResults = true;
-      //   this.searchResults = data;
-      //   console.log(data);
-      // });
+  onSearchChange(value, modulename) {
+    if (value.length > 2 && modulename === "document") {
+      this.documentService.getDocumentName(value).subscribe(data => {
+        this.documentshowResults = true;
+        this.documentsearchResults = data;
+        console.log(data);
+      });
+    } else if (value.length > 2) {
+      this.partService.getPartName(value).subscribe(data => {
+        this.partshowResults = true;
+        this.partsearchResults = data;
+        console.log(data);
+      });
     }
   }
 
-  selectedItem(item) {
-    this.search = item.username;
-    this.showResults = false;
+  selectedItem(item, modulename) {
+    if (modulename === "document") {
+      this.documentsearch = item.name;
+      this.documentshowResults = false;
+    } else {
+      this.partsearch = item.name;
+      this.partshowResults = false;
+    }
   }
 
-  addUserToUserGroup(searchTerm) {
-    let user = this.searchResults.filter(function (el) {
-      return el.username === searchTerm;
+  addDocumentToStep(searchTerm) {
+    let document = this.documentsearchResults.filter(function (el) {
+      return el.name === searchTerm;
     })[0];
-    this.search = "";
-    //this.usergroup.users.push(user);
+    this.documentsearch = "";
+    this.step.documents.push(document);
   }
-  deleteUser(user) {
-    // this.usergroup.users = this.usergroup.users.filter(function (el) {
-    //   return el._id !== user._id;
-    // });
+
+  addPartToStep(searchTerm) {
+    let part = this.partsearchResults.filter(function (el) {
+      return el.name === searchTerm;
+    })[0];
+    this.partsearch = "";
+    this.step.parts.push(part);
+  }
+
+  deleteDocument(document) {
+    this.step.documents = this.step.documents.filter(function (el) {
+      return el._id !== document._id;
+    });
+  }
+
+  deletePart(part) {
+    this.step.parts = this.step.parts.filter(function (el) {
+      return el._id !== part._id;
+    });
+  }
+
+  newStep(){
+    this.step = {
+      "name": "",
+      "description": "",
+      "parts": [],
+      "documents": []
+    };
+  }
+
+  addStepToStepGroup(){
+    this.stepgroup.steps.push(this.step);
   }
   /*Auto complete methods end */
 

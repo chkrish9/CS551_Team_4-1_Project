@@ -10,6 +10,14 @@ router.get('/all', passport.authenticate('jwt',{session : false}), (req, res, ne
     });
 });
 
+router.get('/get/:name',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
+    var name = req.params.name;
+    //console.log(name);
+    Part.getPartNames(name,(err, data) => {
+        res.json(data);
+    });
+});
+
 //Create
 router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res, next) =>{
     let newPart = new Part({

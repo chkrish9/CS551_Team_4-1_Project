@@ -48,4 +48,41 @@ export class StepgroupService {
     let url = this.authService.prepEndpoint('stepgroup/all');
     return this.http.get(url, { headers: headers });
   }
+
+  addStep(step) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
+    let url = this.authService.prepEndpoint('stepgroup/create');
+    return this.http.post(url, step, { headers: headers });
+  }
+
+  updateStep(step) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
+    let url = this.authService.prepEndpoint('step/update/');
+    url = url + `${step._id}`;
+    return this.http.put(url, step, { headers: headers });
+  }
+
+  deleteStep(id) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
+    let url = this.authService.prepEndpoint('step/delete/');
+    return this.http.delete(url + id, { headers: headers });
+  }
+
+  getAllSteps() {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    });
+    let url = this.authService.prepEndpoint('step/all');
+    return this.http.get(url, { headers: headers });
+  }
 }
