@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 //Step schema
 const StepModel = mongoose.Schema({
@@ -9,7 +10,15 @@ const StepModel = mongoose.Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    parts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'PartModel'
+    }],
+    documents : [{
+        type: Schema.Types.ObjectId,
+        ref: 'DocumentModel'
+    }]
 });
 
 const Step = module.exports = mongoose.model('StepModel', StepModel);
@@ -32,5 +41,5 @@ module.exports.deleteStep = function (id, callback) {
 }
 
 module.exports.getSteps = function (callback) {
-    Step.find().exec(callback);
+    Step.find().populate('parts').populate('documents').exec(callback);
 }

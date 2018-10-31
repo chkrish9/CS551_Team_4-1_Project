@@ -16,7 +16,8 @@ router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, ne
 router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res, next) => {
     let newStepgroup = new Stepgroup({
         name: req.body.name,
-        description : req.body.description
+        description : req.body.description,
+        steps:req.body.steps
     });
     Stepgroup.addStepgroup(newStepgroup, (err, stepgroup) => {
         if (err) {
@@ -33,7 +34,8 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
     var id = req.params.id;
     var update = {
         name: req.body.name,
-        description : req.body.description
+        description : req.body.description,
+        steps:req.body.steps
     };
     Stepgroup.updateStepgroup(id, update, (err, machineGroup) => {
         if (err) {

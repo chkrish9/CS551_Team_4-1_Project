@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 //Step group schema
 const StepgroupModel = mongoose.Schema({
@@ -9,7 +10,11 @@ const StepgroupModel = mongoose.Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    steps : [{
+        type: Schema.Types.ObjectId,
+        ref: 'StepModel'
+    }],
 });
 
 const Stepgroup = module.exports = mongoose.model('StepgroupModel', StepgroupModel);
@@ -32,5 +37,5 @@ module.exports.deleteStepgroup = function (id, callback) {
 }
 
 module.exports.getStepgroups = function (callback) {
-    Stepgroup.find().exec(callback);
+    Stepgroup.find().populate('steps').exec(callback);
 }
