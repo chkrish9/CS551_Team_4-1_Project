@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController  } from 'ionic-angular';
-import {  HomePage } from '../home/home'
+import {  NavController, NavParams,ToastController  } from 'ionic-angular';
+import {  HomePage } from '../home/home';
+import { AuthService } from '../../services/common/auth.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,7 +19,12 @@ export class LoginPage {
   username: string = "";
   password: string ="";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public toastCtrl: ToastController,
+    public authService:AuthService
+  ) {
   }
   login()
   {
@@ -28,15 +34,21 @@ export class LoginPage {
   var username = this.username;
   var password = this.password;
   if (this.username !== "" && this.password !== "") {
-    var user = users.filter(function (el) {
-      return (el.username === username && el.password === password)
-    });
-    if (user.length > 0) {
-      localStorage.setItem("loggedInUser", JSON.stringify(user[0]));
-      this.navCtrl.setRoot(HomePage);
-    } else {
-      this.presentToast("Invalid Username/Password.");
+    const user = {
+      username: this.username,
+      password: this.password
     }
+
+    this.authService.authenticateUser(user).subscribe(data => {
+      console.log(data);
+      if (data["success"]) {
+        this.authService.storeUserData(data["token"], data["user"], data["privillages"]);
+        console.log("Logged In");
+        this.navCtrl.setRoot(HomePage);
+      } else {
+        this.presentToast("Invalid UserName/Password");
+      }
+    });
   }else{
     this.presentToast("Please fill all the details and login.");
   }
