@@ -39,3 +39,8 @@ module.exports.deleteStepgroup = function (id, callback) {
 module.exports.getStepgroups = function (callback) {
     Stepgroup.find().populate('steps').exec(callback);
 }
+
+module.exports.getStepGroupNames = function(name,callback){
+    //console.log(name);
+    Stepgroup.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
+}

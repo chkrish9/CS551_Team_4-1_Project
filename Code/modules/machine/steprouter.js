@@ -11,6 +11,16 @@ router.get('/all',passport.authenticate('jwt',{session : false}), (req, res, nex
     //res.send('Redirected to Contant list');
 });
 
+router.get('/getById/:id',passport.authenticate('jwt',{session : false}), (req, res, next) => {
+    Step.getStepById(req.params.id, (err, step)=>{
+        if(err){
+            res.json({success : false, msg : "Failed to Add user."});
+        }else{
+            res.json({success : true, msg : "User Added.", data:step});
+        }
+    });
+});
+
 
 //Create
 router.post('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
@@ -20,11 +30,11 @@ router.post('/create',passport.authenticate('jwt',{session : false}), (req, res,
         parts:req.body.parts,
         documents:req.body.documents 
     });
-    Step.addStep(newStep, (err, reason) =>{
+    Step.addStep(newStep, (err, step) =>{
         if(err){
             res.json({success : false, msg : "Failed to Add user."});
         }else{
-            res.json({success : true, msg : "User Added."});
+            res.json({success : true, msg : "User Added.", data:step});
         }
     });
 });
@@ -50,6 +60,7 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}), functio
 
 //Delete
 router.delete('/delete/:id',passport.authenticate('jwt',{session : false}), (req, res, next) => {
+    console.log(req.params.id);
     Step.deleteStep(req.params.id,(err, result) => {
         if (err) {
             res.json({ msg: 'Failed while deleting contact', status: 'error',success:false });

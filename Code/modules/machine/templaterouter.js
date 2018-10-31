@@ -27,7 +27,8 @@ router.post('/create',passport.authenticate('jwt',{session : false}),  (req, res
         name : req.body.name,
         description : req.body.description,
         machine : req.body.machine,
-        reason: req.body.reason
+        reason: req.body.reason,
+        stepgroups: req.body.stepgroups
     });
     Template.addTemplate(newTemplate, (err, Template) =>{
         if(err){
@@ -46,7 +47,8 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
         name : req.body.name,
         description : req.body.description,
         machine : req.body.machine,
-        reason: req.body.reason
+        reason: req.body.reason,
+        stepgroups: req.body.stepgroups
     };
     Template.updateTemplate(id, update, (err, Template) => {
         if (err) {

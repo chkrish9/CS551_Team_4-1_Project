@@ -73,7 +73,7 @@
             </div>
             <div class="col-sm-2">
               <div class="form-group">
-                <input type="button" class="form-control btn btn-primary" (click)="addLineToArea(search)" value="Add">
+                <input type="button" class="form-control btn btn-primary" (click)="addStepGrpToTemplate(search)" value="Add">
               </div>
             </div>
           </div>
@@ -83,9 +83,9 @@
                 <th>Step Group Name</th>
                 <th>Delete</th>
               </tr>
-              <tr *ngFor="let step of template.steps">
+              <tr *ngFor="let step of template.stepgroups">
                 <td>{{step.name}}</td>
-                <td><button type="button" (click)="deleteLine(step)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                <td><button type="button" (click)="deleteStepGrp(step)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
               </tr>
             </table>
           </div>

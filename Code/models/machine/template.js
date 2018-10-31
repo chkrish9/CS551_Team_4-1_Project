@@ -21,6 +21,10 @@ const TemplateModel = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'ReasonModel'
     },
+    stepgroups : [{
+        type: Schema.Types.ObjectId,
+        ref: 'StepgroupModel'
+    }],
 });
 
 const Template = module.exports = mongoose.model('TemplateModel', TemplateModel);
@@ -43,7 +47,7 @@ module.exports.deleteTemplate = function (id, callback) {
 }
 
 module.exports.getTemplates = function (callback) {
-    Template.find().exec(callback);
+    Template.find().populate('stepgroups').exec(callback);
 }
 
 module.exports.getTemplateNames = function(name,callback){

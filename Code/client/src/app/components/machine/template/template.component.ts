@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MachineService } from '../../../services/machine/machine.service';
 import { ReasonService } from '../../../services/machine/reason.service';
 import { TemplateService } from '../../../services/machine/template.service';
+import { StepgroupService } from '../../../services/machine/stepgroup.service';
 import { ToasterService, Toast } from 'angular2-toaster';
 
 @Component({
@@ -14,7 +15,8 @@ export class TemplateComponent implements OnInit {
     "name": "",
     "description": "",
     "reason": "",
-    "machine": ""
+    "machine": "",
+    "stepgroups":[]
   };
   documents: any;
   isList: boolean = true;
@@ -33,6 +35,7 @@ export class TemplateComponent implements OnInit {
     private machineService: MachineService,
     private reasonService: ReasonService,
     private templateService:TemplateService,
+    private stepgroupService:StepgroupService,
     private toasterService: ToasterService
   ) {
     this.machineService.getMachines().subscribe(data => {
@@ -54,7 +57,8 @@ export class TemplateComponent implements OnInit {
       "name": "",
       "description": "",
       "reason": "",
-      "machine": ""
+      "machine": "",
+      "stepgroups":[]
     };
   }
   back() {
@@ -128,30 +132,30 @@ export class TemplateComponent implements OnInit {
    /*Auto complete methods start */
    onSearchChange(value) {
     if (value.length > 2) {
-      // this.userService.getUserName(value).subscribe(data => {
-      //   this.showResults = true;
-      //   this.searchResults = data;
-      //   console.log(data);
-      // });
+      this.stepgroupService.getStepGroupName(value).subscribe(data => {
+        this.showResults = true;
+        this.searchResults = data;
+        console.log(data);
+      });
     }
   }
 
   selectedItem(item) {
-    this.search = item.username;
+    this.search = item.name;
     this.showResults = false;
   }
 
-  addUserToUserGroup(searchTerm) {
-    let user = this.searchResults.filter(function (el) {
-      return el.username === searchTerm;
+  addStepGrpToTemplate(searchTerm) {
+    let stepgroup = this.searchResults.filter(function (el) {
+      return el.name === searchTerm;
     })[0];
     this.search = "";
-    //this.usergroup.users.push(user);
+    this.template.stepgroups.push(stepgroup);
   }
-  deleteUser(user) {
-    // this.usergroup.users = this.usergroup.users.filter(function (el) {
-    //   return el._id !== user._id;
-    // });
+  deleteStepGrp(stepgroup) {
+    this.template.stepgroups = this.template.stepgroups.filter(function (el) {
+      return el._id !== stepgroup._id;
+    });
   }
   /*Auto complete methods end */
 }

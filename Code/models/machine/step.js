@@ -24,7 +24,7 @@ const StepModel = mongoose.Schema({
 const Step = module.exports = mongoose.model('StepModel', StepModel);
 
 module.exports.getStepById = function (id, callback) {
-    Step.findById(id, callback);
+    Step.findById(id).populate('parts').populate('documents').exec(callback);
 }
 
 module.exports.addStep = function (newStep, callback) {
@@ -37,6 +37,7 @@ module.exports.updateStep = function (id, updateQuery, callback) {
 }
 
 module.exports.deleteStep = function (id, callback) {
+    console.log(id);
     Step.remove({ _id: id }, callback);
 }
 

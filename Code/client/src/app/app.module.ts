@@ -9,6 +9,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ToasterModule } from 'angular2-toaster';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/common/header/header.component';
@@ -85,6 +86,7 @@ const appRoutes : Routes = [
     NgxQRCodeModule,
     FileUploadModule,
     BrowserAnimationsModule,
+    ModalModule.forRoot(),
     ToasterModule.forRoot(),
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes),
