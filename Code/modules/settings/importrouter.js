@@ -59,7 +59,7 @@ router.post('/create', passport.authenticate('jwt', { session: false }),(req, re
     }
 });
 
-router.get('/download', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+router.get('/download',  (req, res, next) => {
     res.download(__dirname + '../../../import-excels/machine.xlsx', "machine.xlsx");
 });
 

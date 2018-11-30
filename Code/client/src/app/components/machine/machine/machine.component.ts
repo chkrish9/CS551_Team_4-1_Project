@@ -73,8 +73,8 @@ export class MachineComponent implements OnInit {
     this.isList = false;
     this.isNew = false;
     this.machine = machine;
-    this.machine.area = machine.area._id;
-    this.machine.line = machine.line._id;
+    this.machine.area = machine.area;
+    this.machine.line = machine.line;
     this.machine.machinegroup = machine.machinegroup._id;
   }
 
