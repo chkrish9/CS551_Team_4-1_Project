@@ -61,3 +61,31 @@ const StepgroupModel = mongoose.Schema({
         ref: 'StepModel'
     }],
 });
+const MachineGroup = module.exports = mongoose.model('MachineGroupModel', MachineGroupModel);
+
+module.exports.getMachineGroupById = function (id, callback) {
+    MachineGroup.findById(id, callback);
+}
+
+module.exports.getMachineGroupByName = function (name, callback) {
+    MachineGroup.find({name:name},callback);
+}
+
+module.exports.addMachineGroup = function (newMachineGroup, callback) {
+    //console.log(newMachineGroup);
+    newMachineGroup.save(callback);
+}
+
+module.exports.updateMachineGroup = function (id, updateQuery, callback) {
+    MachineGroup.findByIdAndUpdate(id, { $set: updateQuery }, callback);
+}
+
+module.exports.deleteMachineGroup = function (id, callback) {
+    MachineGroup.remove({ _id: id }, callback);
+}
+
+module.exports.getMachineGroups = function (callback) {
+    MachineGroup.find().exec(callback);
+}
+
+
