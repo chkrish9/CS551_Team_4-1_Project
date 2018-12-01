@@ -117,4 +117,27 @@ module.exports.getLines = function (callback) {
 module.exports.getLineNames = function(name,callback){
     //console.log(name);
     Line.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
-}
+}const TemplateModel = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    machine: {
+        required:true,
+        type: Schema.Types.ObjectId,
+        ref: 'MachineModel'
+    },
+    reason: {
+        required:true,
+        type: Schema.Types.ObjectId,
+        ref: 'ReasonModel'
+    },
+    stepgroups : [{
+        type: Schema.Types.ObjectId,
+        ref: 'StepgroupModel'
+    }],
+});
