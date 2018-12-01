@@ -16,16 +16,6 @@ const AreaModel = mongoose.Schema({
         ref: 'LineModel'
     }],
 });
-
-
-
-
-
-module.exports.deleteArea = function (id, callback) {
-    Area.remove({ _id: id }, callback);
-}
-
-
 module.exports.deleteArea = function (id, callback) {
     Area.remove({ _id: id }, callback);
 }
