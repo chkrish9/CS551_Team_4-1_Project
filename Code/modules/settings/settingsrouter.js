@@ -10,20 +10,4 @@ router.get('/all',passport.authenticate('jwt', { session: false }), (req, res, n
     });
 });
 
-//Update
-router.put('/update/:id',passport.authenticate('jwt', { session: false }),  function (req, res, next) {
-    console.log(req.body);
-    var id = req.params.id;
-    var update = {
-        name: req.body.name,
-        value: req.body.value
-    };
-    Settings.updateSetting(id, update, (err, machineGroup) => {
-        if (err) {
-            res.json({ msg: 'Failed to update', status: 'error' });
-        } else {
-            res.json({ msg: 'updated successfully' });
-        }
-    });
-});
 
