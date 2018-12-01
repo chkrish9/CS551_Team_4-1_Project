@@ -53,3 +53,4 @@ module.exports.getDocumentNames = function(name,callback){
     //console.log(name);
     Document.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
 }
+    Document.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
