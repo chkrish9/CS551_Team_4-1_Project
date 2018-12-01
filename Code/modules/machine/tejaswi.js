@@ -104,3 +104,21 @@ router.put('/update/:id',passport.authenticate('jwt',{session : false}),  functi
 });
 
 //Delete
+router.put('/update/:id',passport.authenticate('jwt',{session : false}),  function (req, res,next) {
+    //console.log( req.body);
+    var id = req.params.id;
+    var update = {
+        name : req.body.name,
+        description : req.body.description,
+        machine : req.body.machine,
+        reason: req.body.reason,
+        stepgroups: req.body.stepgroups
+    };
+    Template.updateTemplate(id, update, (err, Template) => {
+        if (err) {
+            res.json({ msg: 'Failed while updating contact', status: 'error' });
+        } else {
+            res.json({ msg: 'new contact added successfully' });
+        }
+    });
+});
