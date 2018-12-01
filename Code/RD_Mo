@@ -11,8 +11,3 @@ const AreaModel = mongoose.Schema({
         type: String,
         required: true
     },
-    lines: [{
-        type: Schema.Types.ObjectId,
-        ref: 'LineModel'
-    }],
-});
