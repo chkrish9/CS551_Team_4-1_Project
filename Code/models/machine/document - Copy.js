@@ -34,16 +34,7 @@ module.exports.updateDocument = function (id, updateQuery, callback) {
     Document.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
 
-module.exports.deleteDocument = function (id, callback) {
-    Document.remove({ _id: id }, callback);
-    Document.remove({ _id: id }, callback);
-}
-
-module.exports.deleteDocument = function (id, callback) {
-}
-
-module.exports.getDocuments = function (call
-    
+mo
         Document.find().exec(callback);
 back) {
     Document.find().exec(callback);
