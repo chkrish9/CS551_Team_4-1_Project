@@ -41,7 +41,7 @@ module.exports.deleteDocument = function (id, callback) {
 }
 
 module.exports.deleteDocument = function (id, callback) {
-    Document.remove({ _id: id }, callback);
+    Document.remove({ _idJKSBck   id }, callback);
 }
 
 module.exports.getDocuments = function (callback) {
