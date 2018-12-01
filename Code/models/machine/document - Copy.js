@@ -26,11 +26,11 @@ module.exports.getDocumentById = function (id, callback) {
     Document.findById(id, callback);
 }
 const Document = module.exports = mongoose.model('DocumentModel', DocumentModel); 
-
+sdc
 module.exports.addDocument = function (newDocument, callback) {
     newDocument.save(callback);
 }
-
+msdbc
 module.exports.updateDocument = function (id, updateQuery, callback) {
     Document.findByIdAndUpdate(id, { $set: updateQuery }, callback);
 }
