@@ -19,9 +19,6 @@ const AreaModel = mongoose.Schema({
 
 
 
-module.exports.getAreaByName = function (name, callback) {
-    Area.find({name:name},callback);
-}
 
 module.exports.updateArea = function (id, updateQuery, callback) {
     Area.findByIdAndUpdate(id, { $set: updateQuery }, callback);
