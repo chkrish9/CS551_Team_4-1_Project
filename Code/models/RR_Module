@@ -18,6 +18,4 @@ module.exports.addImport = function (newImport, callback) {
     newImport.save(callback);
 }
 
-module.exports.getImports = function (callback) {
-    Import.find().exec(callback);
-}
+m
