@@ -17,11 +17,7 @@ const AreaModel = mongoose.Schema({
     }],
 });
 
-const Area = module.exports = mongoose.model('AreaModel', AreaModel);
 
-module.exports.getAreaById = function (id, callback) {
-    Area.findById(id, callback);
-}
 
 module.exports.getAreaByName = function (name, callback) {
     Area.find({name:name},callback);
