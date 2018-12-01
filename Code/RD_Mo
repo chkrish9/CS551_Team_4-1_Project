@@ -21,6 +21,21 @@ const AreaModel = mongoose.Schema({
 
 
 
+module.exports.deleteArea = function (id, callback) {
+    Area.remove({ _id: id }, callback);
+}
+
+
+module.exports.deleteArea = function (id, callback) {
+    Area.remove({ _id: id }, callback);
+}
+
+
+module.exports.deleteArea = function (id, callback) {
+    Area.remove({ _id: id }, callback);
+}
+
+
 
 module.exports.deleteArea = function (id, callback) {
     Area.remove({ _id: id }, callback);
