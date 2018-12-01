@@ -14,8 +14,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'steps.html',
 })
 export class StepsPage {
-
+  steps:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.steps = [
+      "Open the lid", "Clean inside", "Replace the belt", "Close the lid"
+      
+    ]
   }
 
   ionViewDidLoad() {
