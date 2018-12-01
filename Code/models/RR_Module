@@ -37,11 +37,3 @@ var reasons = require('../modules/machine/reasonrouter');
 var importrouter = require('../modules/settings/importrouter');
 var machinegroups = require('../modules/machine/machinegrouprouter');
 var areas = require('../modules/machine/arearouter');
-var machines = require('../modules/machine/machinerouter');
-var settings = require('../modules/settings/settingsrouter');
-var part = require('../modules/machine/partrouter');
-var document = require('../modules/machine/documentrouter');
-var template = require('../modules/machine/templaterouter');
-var stepgroup = require('../modules/machine/stepgrouprouter');
-var step = require('../modules/machine/steprouter');
-

@@ -27,18 +27,3 @@ router.put('/update/:id',passport.authenticate('jwt', { session: false }),  func
     });
 });
 
-//Create
-router.post('/create',passport.authenticate('jwt', { session: false }), (req, res, next) =>{
-    let newSettings = new Settings({
-        name : req.body.name,
-        value : req.body.value
-    });
-    Settings.addSetting(newSettings, (err, Template) =>{
-        if(err){
-            res.json({success : false, msg : "Failed to Add new Settings."});
-        }else{
-            res.json({success : true, msg : "new Settings Added."});
-        }
-    });
-});
-module.exports = router;
