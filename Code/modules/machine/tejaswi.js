@@ -79,3 +79,28 @@ router.get('/getById/:id',passport.authenticate('jwt',{session : false}), (req, 
         }
     });
 });
+router.put('/update/:id',passport.authenticate('jwt',{session : false}),  function (req, res, next) {
+    //console.log(req.body);
+    var id = req.params.id;
+    var update = {
+        name: req.body.name,
+        machinegroup: req.body.machinegroup,
+        company: req.body.company,
+        model: req.body.model,
+        dateOfInstall: req.body.dateOfInstall,
+        qrCode: req.body.qrCode,
+        area: req.body.area,
+        line: req.body.line,
+        barcode: req.body.barcode,
+    };
+    update.qrCode = "{ machineName :" + update.name + ",area:" + update.area + ",line:" + update.line + "}"
+    Machine.updateMachine(id, update, (err, machineGroup) => {
+        if (err) {
+            res.json({ msg: 'Failed while updating contact', status: 'error' });
+        } else {
+            res.json({ msg: 'new contact added successfully' });
+        }
+    });
+});
+
+//Delete
