@@ -42,7 +42,10 @@ module.exports.deleteDocument = function (id, callback) {
 module.exports.deleteDocument = function (id, callback) {
 }
 
-module.exports.getDocuments = function (callback) {
+module.exports.getDocuments = function (call
+    
+        Document.find().exec(callback);
+back) {
     Document.find().exec(callback);
 }
 
