@@ -1,33 +1,4 @@
-const mongoose = require('mongoose');
 
-//Import schema
-const ImportModel = mongoose.Schema({
-    moduleName: {
-        type: String,
-        required: true
-    },
-    date:{
-        type: String
-    }
-});
-
-const Import = module.exports = mongoose.model('ImportModel', ImportModel);
-
-module.exports.addImport = function (newImport, callback) {
-    //console.log(newLine);
-    newImport.save(callback);
-}
-
-const SettingModel = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    value: {
-        type: String,
-        required: true
-    }
-});
 
 var users = require('../modules/users/userrouter');
 var login = require('../modules/users/loginrouter');
