@@ -46,3 +46,18 @@ module.exports.getParts = function (callback) {
 module.exports.getPartNames = function(name,callback){
     Part.find({ "name": { $regex: '.*' + name + '.*' }}, callback);
 }
+//Step group schema
+const StepgroupModel = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    steps : [{
+        type: Schema.Types.ObjectId,
+        ref: 'StepModel'
+    }],
+});
