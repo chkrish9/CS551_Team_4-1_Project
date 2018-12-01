@@ -1,6 +1,7 @@
 <div class="side-navbar">
     <ul class="list-group" *ngIf="authService.isRouteDisplay('home')">
-        <li></li>
+        <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('home')" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact : true }" class="list-group-item" [routerLink]="['/home']">Regular Maintenance</li>
     </ul>
     <ul class="list-group" *ngIf="authService.isRouteDisplay('machine')">
         <li *ngIf="authService.loggedIn()  && authService.checkPrivilege('machine')" [routerLinkActive]="['active']"

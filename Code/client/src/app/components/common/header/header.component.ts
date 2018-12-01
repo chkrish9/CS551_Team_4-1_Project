@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
     private authService:AuthService,
     private router:Router
   ) {
-    
+    //this.updateMenu("home");
    }
 
   ngOnInit() {

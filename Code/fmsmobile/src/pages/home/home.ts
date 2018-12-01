@@ -6,9 +6,18 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  tickets:any;
   constructor(public navCtrl: NavController) {
-
+    this.tickets = [
+      {
+        "machineName":"Machine",
+        "reason":"Belt failure"
+      },
+      {
+        "machineName":"Machine 2",
+        "reason":"Oil leaking"
+      }
+    ]
   }
 
 }

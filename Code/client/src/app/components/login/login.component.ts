@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AuthService } from '../../services/common/auth.service';
 import { Router } from '@angular/router';
 import { ToasterService, Toast } from 'angular2-toaster';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +13,21 @@ import { ToasterService, Toast } from 'angular2-toaster';
 export class LoginComponent implements OnInit {
   username: String="";
   password: String="";
+  modalRef: BsModalRef;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
+  }
+
+  openModal(template: TemplateRef<any>) {
+    
+    this.modalRef = this.modalService.show(template, { class: 'modal-md' });
   }
 
   onLoginSubmit() {
@@ -56,5 +65,9 @@ export class LoginComponent implements OnInit {
       };
       this.toasterService.pop(toast);
     }
+  }
+
+  closeModal() {
+    this.modalRef.hide();
   }
 }
