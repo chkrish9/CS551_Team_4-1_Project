@@ -63,3 +63,19 @@ router.delete('/delete/:id',passport.authenticate('jwt',{session : false}),  (re
 });
 
 module.exports = router;
+router.get('/all',passport.authenticate('jwt',{session : false}), (req, res, next) => {
+    Step.getSteps((err, data) => {
+        res.json(data);
+    });
+    //res.send('Redirected to Contant list');
+});
+
+router.get('/getById/:id',passport.authenticate('jwt',{session : false}), (req, res, next) => {
+    Step.getStepById(req.params.id, (err, step)=>{
+        if(err){
+            res.json({success : false, msg : "Failed to Add user."});
+        }else{
+            res.json({success : true, msg : "User Added.", data:step});
+        }
+    });
+});
