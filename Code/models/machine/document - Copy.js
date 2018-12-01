@@ -18,11 +18,14 @@ const DocumentModel = mongoose.Schema({
     }
 });
 
+
+const Document = module.exports = mongoose.model('DocumentModel', DocumentModel); 
 const Document = module.exports = mongoose.model('DocumentModel', DocumentModel);
 
 module.exports.getDocumentById = function (id, callback) {
     Document.findById(id, callback);
 }
+const Document = module.exports = mongoose.model('DocumentModel', DocumentModel); 
 
 module.exports.addDocument = function (newDocument, callback) {
     newDocument.save(callback);
