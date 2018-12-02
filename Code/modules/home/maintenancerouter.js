@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Maintenance = require('../../models/home/maintenance');
+const schedule = require('node-schedule');
 
 //Get
 router.get('/machine/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
@@ -24,6 +25,15 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), func
     var id = req.params.id;
     console.log(id);
     console.log(maintenance);
+    
+    var rule = new schedule.RecurrenceRule();
+
+    rule.minute = new schedule.Range(0, 59, 1);
+
+    schedule.scheduleJob(rule, function(){
+        console.log(rule);
+        console.log('Today is recognized by Rebecca Black!---------------------------');
+    });
     if (id === "0") {
         let newMaintenance = new Maintenance({
             machineName: req.body.machineName,
