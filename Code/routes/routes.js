@@ -13,6 +13,7 @@ var document = require('../modules/machine/documentrouter');
 var template = require('../modules/machine/templaterouter');
 var stepgroup = require('../modules/machine/stepgrouprouter');
 var step = require('../modules/machine/steprouter');
+var maintenance = require('../modules/home/maintenancerouter');
 
 module.exports = function router(app){
     app.use('/users',users);
@@ -30,4 +31,5 @@ module.exports = function router(app){
     app.use('/template',template);
     app.use('/stepgroup',stepgroup);
     app.use('/step',step);
+    app.use('/maintenance',maintenance);
 };
