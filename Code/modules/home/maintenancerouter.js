@@ -99,4 +99,22 @@ function createSchedule(maintenance){
         
     });
 }
+
+//Create
+router.post('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
+    var newTicket = new Ticket({
+        machineName:maintenance.machineName,
+        reason: data[0]._id
+    });
+    Ticket.addTicket(newTicket,(err, data) => {
+        if (err) {
+            console.log(JSON.stringify(err));
+            //res.json({ success: false, msg: "Failed to Add maintenance." });
+        } else {
+            io.emit('newTicketCreated');
+            console.log(JSON.stringify(data));
+            //res.json({ success: true, msg: "maintenance Added." });
+        }
+    });
+});
 module.exports = router;
