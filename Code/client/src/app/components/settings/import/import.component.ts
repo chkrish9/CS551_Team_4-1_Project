@@ -27,7 +27,7 @@ export class ImportComponent implements OnInit {
       name: "machine",
       data: {
         "moduleName": "Machine",
-        "url": "http://localhost:3000/import/download"
+        "url": "https://fms-2018.herokuapp.com/import/download"
       }
     }
   ];

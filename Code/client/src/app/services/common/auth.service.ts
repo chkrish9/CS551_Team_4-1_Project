@@ -127,7 +127,7 @@ export class AuthService {
     if (!this.isDev) {
       return ep;
     } else {
-      return 'http://localhost:3000/' + ep;
+      return 'https://fms-2018.herokuapp.com/' + ep;
     }
   }
 
