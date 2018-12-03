@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   username: String="";
   password: String="";
   modalRef: BsModalRef;
+  fusername: String="";
 
   constructor(
     private authService: AuthService,
@@ -65,6 +66,19 @@ export class LoginComponent implements OnInit {
       };
       this.toasterService.pop(toast);
     }
+  }
+
+  sendMail(){
+    this.authService.forgotPassword(this.fusername).subscribe(data => {
+      var toast: Toast = {
+        type: 'success',
+        title: 'Success',
+        body: 'An email has been sent. please check your email for temporary password.',
+        showCloseButton: true
+      };
+      this.toasterService.pop(toast);
+      this.modalRef.hide();
+    });
   }
 
   closeModal() {

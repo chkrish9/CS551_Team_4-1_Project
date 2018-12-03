@@ -74,6 +74,16 @@ export class AuthService {
     return this.http.get(url, { headers: headers });
   }
 
+  forgotPassword(username) {
+    var user = {
+      "username":username
+    }
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let url = this.prepEndpoint('login/forgotPassword');
+    return this.http.post(url, user, { headers: headers });
+  }
+
+
   hasPrevillage(homeroute) {
     var privi = this.privillages;
     var routes = this.pri.getPrivillages().filter(function (el) {
