@@ -136,7 +136,7 @@ router.get('/all',passport.authenticate('jwt',{session : false}), (req, res, nex
 });
 
 //Get
-router.post('/maintenanceDetails',passport.authenticate('jwt',{session : false}), (req, res, next) => {
+router.post('/maintenanceDetails', (req, res, next) => {
     var temp = {
         machineId:req.body.machineId,
         reasonId:req.body.reasonId,
@@ -152,8 +152,8 @@ router.post('/maintenanceDetails',passport.authenticate('jwt',{session : false})
             for(let j=0;j<stgrp[i].steps.length;j++){
                 Step.findById(stgrp[i].steps[j],(err, data) => {
                     e["steps"].push(data);
-                    d.push(e);
                     if(i+1 === stgrp.length && j+1 == stgrp[i].steps.length){
+                        d.push(e);
                         res.send(d);
                     }
                 });

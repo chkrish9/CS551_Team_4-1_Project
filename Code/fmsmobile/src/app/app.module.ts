@@ -9,6 +9,7 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { TicketPage } from '../pages/ticket/ticket';
 import { StepsPage } from '../pages/steps/steps';
+import { ReferencesPage } from '../pages/references/references';
 
 import { AuthService } from '../services/common/auth.service';
 
@@ -22,7 +23,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     TicketPage,
-    StepsPage
+    StepsPage,
+    ReferencesPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     TicketPage,
-    StepsPage
+    StepsPage,
+    ReferencesPage
   ],
   providers: [
     StatusBar,
