@@ -118,11 +118,11 @@ router.post('/create',passport.authenticate('jwt',{session : false}), (req, res,
     Ticket.addTicket(newTicket,(err, data) => {
         if (err) {
             console.log(JSON.stringify(err));
-            //res.json({ success: false, msg: "Failed to Add maintenance." });
+            res.json({ success: false, msg: "Failed to Add maintenance." });
         } else {
             io.emit('newTicketCreated');
             console.log(JSON.stringify(data));
-            //res.json({ success: true, msg: "maintenance Added." });
+            res.json({ success: true, msg: "maintenance Added." });
         }
     });
 });

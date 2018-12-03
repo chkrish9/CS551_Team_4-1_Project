@@ -77,7 +77,6 @@ export class TicketPage {
       'Authorization': this.authService.getToken()
     });
     let url = this.authService.prepEndpoint('maintenance/create');
-    this.presentToast("Ticket gng 2 Create.");
     this.http.post(url, this.ticket, { headers: headers }).subscribe(data => {
       this.presentToast("Ticket Created.");
       console.log("hi");

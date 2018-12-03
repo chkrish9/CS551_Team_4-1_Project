@@ -13,11 +13,6 @@ export class AuthService {
     private http: HttpClient,
   ) {
     this.isDev = true;
-    // if (this.getUser() !== null && this.getUser() !== undefined) {
-    //   this.getUserPrivillages().subscribe(data => {
-    //     this.privillages = data["privillages"];
-    //   });
-    // }
   }
 
   authenticateUser(user) {
@@ -35,78 +30,12 @@ export class AuthService {
     this.privillages = privillages;
   }
 
-//   loggedIn() {
-//     this.loadToken();
-//     return tokenNotExpired(null, this.authToken);
-//   }
-
-//   loadToken() {
-//     const token = localStorage.getItem('id_token');
-//     this.authToken = token;
-//   }
 
   getToken() {
     return localStorage.getItem('id_token');
   }
 
-//   logout() {
-//     this.authToken = null;
-//     this.user = null;
-//     localStorage.clear();
-//   }
 
-//   checkPrivilege(routename) {
-//     if (this.privillages.indexOf(routename) > -1)
-//       return true;
-//   }
-
-//   getUserPrivillages() {
-//     let headers = new HttpHeaders({
-//       'Content-Type': 'application/json',
-//       'Authorization': this.getToken()
-//     });
-//     let url = this.prepEndpoint('login/privillages/' + this.getUser().id);
-//     return this.http.get(url, { headers: headers });
-//   }
-
-//   hasPrevillage(homeroute) {
-//     var privi = this.privillages;
-//     var routes = this.pri.getPrivillages().filter(function (el) {
-//       return el.group === homeroute
-//     });
-//     var count = routes.filter(function (el) {
-//       return privi.indexOf(el.name) > -1;
-//     }).length;
-//     return count > 0
-//   }
-
-//   getUser() {
-//     return JSON.parse(localStorage.getItem('user'));
-//   }
-
-//   getSideMenuPage(route) {
-//     var routes = this.pri.getPrivillages().filter(function (el) {
-//       return el.group === route
-//     });
-//     var pr = _.sortBy(routes, 'order');
-//     var privi = this.privillages;
-//     var menu = pr.filter(function (el) {
-//       return privi.indexOf(el.name) > -1;
-//     })[0];
-//     this.storeRoute(route);
-//     return menu;
-//   }
-//   storeRoute(route) {
-//     localStorage.setItem('current_route', route);
-//   }
-
-//   isRouteDisplay(route) {
-//     if (route === localStorage.getItem('current_route')) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   }
 
   prepEndpoint(ep) {
     if (!this.isDev) {
