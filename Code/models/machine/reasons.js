@@ -18,6 +18,10 @@ module.exports.getReasonById = function (id, callback) {
     Reason.findById(id, callback);
 }
 
+module.exports.getReasonByName = function (name, callback) {
+    Reason.find({name:name}, callback);
+}
+
 module.exports.addReason = function (newReason, callback) {
     //console.log(newReason);
     newReason.save(callback);

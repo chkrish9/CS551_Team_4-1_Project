@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/user/user');
+const Setting = require('../../models/settings/settings');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const config = require('../../config/database');
@@ -70,25 +71,29 @@ router.post('/forgotPassword', (req, res, next) =>{
             });
             console.log(JSON.stringify(data));
             var emailBody = "Hi "+user.firstName+ " "+user.firstName+",</br> your temporary password is "+ newPassword+".</br>Thanks,</br>Admin.";
-            // setup email data with unicode symbols
-            let mailOptions = {
-                from: 'testfms32@gmail.com', // sender address
-                to: user.email, // list of receivers
-                subject: 'Temporary password.', // Subject line
-                text: 'Hello world?', // plain text body
-                html: emailBody // html body
-            };
+            var adminemail = "";
+            Setting.getSettingByName("Admin Email",(err, data)=>{
+                console.log(JSON.stringify(data));
+                // setup email data with unicode symbols
+                let mailOptions = {
+                    from: data.value, // sender address
+                    to: user.email, // list of receivers
+                    subject: 'Temporary password.', // Subject line
+                    html: emailBody // html body
+                };
 
-            // send mail with defined transport object
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    return res.json({ success: false, msg: "Mail not send" });
-                }
-                res.json({ success: true, msg: "Mail sent" });
-                console.log('Message sent: %s', info.messageId);
-                // Preview only available when sending through an Ethereal account
-                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                // send mail with defined transport object
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        return res.json({ success: false, msg: "Mail not send" });
+                    }
+                    res.json({ success: true, msg: "Mail sent" });
+                    console.log('Message sent: %s', info.messageId);
+                    // Preview only available when sending through an Ethereal account
+                    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                });
             });
+            
         }));
         
     });

@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Maintenance = require('../../models/home/maintenance');
+const Reason = require('../../models/machine/reasons');
+const Setting = require('../../models/settings/settings');
 const Ticket = require('../../models/home/ticket');
 const schedule = require('node-schedule');
 
@@ -72,19 +74,26 @@ function createSchedule(maintenance){
     schedule.scheduleJob(rule, function(){
         console.log(rule);
         console.log(JSON.stringify(maintenance));
-        var newTicket = new Ticket({
-            machineName:maintenance.machineName,
-            reason: "5bae223052b0a00bdcb9aa68"
+        Setting.getSettingByName("Regular Maintenance Reason",(err, data)=>{
+            console.log(data);
+            Reason.getReasonByName(data[0].value,(err, data)=>{
+                console.log(data);
+                var newTicket = new Ticket({
+                    machineName:maintenance.machineName,
+                    reason: data[0]._id
+                });
+                Ticket.addTicket(newTicket,(err, data) => {
+                    if (err) {
+                        console.log(JSON.stringify(err));
+                        //res.json({ success: false, msg: "Failed to Add maintenance." });
+                    } else {
+                        console.log(JSON.stringify(data));
+                        //res.json({ success: true, msg: "maintenance Added." });
+                    }
+                });
+            })
         });
-        Ticket.addTicket(newTicket,(err, data) => {
-            if (err) {
-                console.log(JSON.stringify(err));
-                //res.json({ success: false, msg: "Failed to Add maintenance." });
-            } else {
-                console.log(JSON.stringify(data));
-                //res.json({ success: true, msg: "maintenance Added." });
-            }
-        });
+        
     });
 }
 module.exports = router;
