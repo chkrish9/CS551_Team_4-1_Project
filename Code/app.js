@@ -1,10 +1,12 @@
 //Importing Require Modules
 const express =  require("express");
 const mongoose = require("mongoose");
+const http = require('http');
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const config = require('./config/database');
+const socketIO = require('socket.io');
 
 const passport = require('passport');
 const passportConfig = require('./config/passport');
@@ -50,7 +52,15 @@ routes(app);
 //Port number
 const port = 3000;
 
-//Starting the server.
-app.listen(port, ()=>{
+// //Starting the server.
+// app.listen(port, ()=>{
+//     console.log("Sever running in port : "+ port);
+// });
+
+const server = http.createServer(app);
+const io = socketIO(server);
+app.set('io', io);
+
+server.listen(port, ()=>{
     console.log("Sever running in port : "+ port);
 });

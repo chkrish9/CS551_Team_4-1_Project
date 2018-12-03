@@ -6,6 +6,7 @@ const Reason = require('../../models/machine/reasons');
 const Setting = require('../../models/settings/settings');
 const Ticket = require('../../models/home/ticket');
 const schedule = require('node-schedule');
+var io="";
 
 //Get
 router.get('/machine/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
@@ -29,7 +30,8 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), func
     console.log(id);
     console.log(maintenance);
     
-   
+    io = req.app.get('io');
+    
     if (id === "0") {
         let newMaintenance = new Maintenance({
             machineName: req.body.machineName,
@@ -87,6 +89,7 @@ function createSchedule(maintenance){
                         console.log(JSON.stringify(err));
                         //res.json({ success: false, msg: "Failed to Add maintenance." });
                     } else {
+                        io.emit('newTicketCreated');
                         console.log(JSON.stringify(data));
                         //res.json({ success: true, msg: "maintenance Added." });
                     }
