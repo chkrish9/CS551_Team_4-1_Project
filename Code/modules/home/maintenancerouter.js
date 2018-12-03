@@ -105,13 +105,14 @@ function createSchedule(maintenance){
 }
 
 //Create
-router.get('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
+router.post('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
     var newTicket = new Ticket({
-        machineName:maintenance.machineName,
-        reasonName: data[0].name,
-        machineId:maintenance._id,
-        reasonId:data[0]._id,
+        machineName:req.body.machineName,
+        reasonName: req.body.reasonName,
+        machineId:req.body.machineId,
+        reasonId:req.body.reasonId,
     });
+    io = req.app.get('io');
     Ticket.addTicket(newTicket,(err, data) => {
         if (err) {
             console.log(JSON.stringify(err));
