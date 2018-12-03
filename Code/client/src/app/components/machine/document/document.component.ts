@@ -53,6 +53,7 @@ export class DocumentComponent implements OnInit {
       "originalFileName": "",
       "uploadFileName": ""
     };
+    this.files = [];
   }
   back() {
     this.isList = true;

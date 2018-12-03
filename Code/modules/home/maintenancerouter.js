@@ -162,4 +162,9 @@ router.post('/maintenanceDetails', (req, res, next) => {
     });
     //res.send('Redirected to Contant list');
 });
+
+router.get('/download/:name',  (req, res, next) => {
+    var name = req.params.name;
+    res.download(__dirname + '../../../uploads/'+name, name);
+});
 module.exports = router;
