@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Maintenance = require('../../models/home/maintenance');
+const Ticket = require('../../models/home/ticket');
 const schedule = require('node-schedule');
 
 //Get
@@ -26,14 +27,7 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), func
     console.log(id);
     console.log(maintenance);
     
-    var rule = new schedule.RecurrenceRule();
-
-    rule.minute = new schedule.Range(0, 59, 1);
-
-    schedule.scheduleJob(rule, function(){
-        console.log(rule);
-        console.log('Today is recognized by Rebecca Black!---------------------------');
-    });
+   
     if (id === "0") {
         let newMaintenance = new Maintenance({
             machineName: req.body.machineName,
@@ -43,6 +37,7 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), func
             if (err) {
                 res.json({ success: false, msg: "Failed to Add maintenance." });
             } else {
+                createSchedule(newMaintenance);
                 res.json({ success: true, msg: "maintenance Added." });
             }
         });
@@ -55,10 +50,41 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), func
             if (err) {
                 res.json({ msg: 'Failed while updating maintenance', status: 'error' });
             } else {
+                createSchedule(maintenance);
                 res.json({ msg: 'new maintenance added successfully' });
             }
         });
     }
 });
 
+function createSchedule(maintenance){
+    var rule = new schedule.RecurrenceRule();
+    var t=0;
+    if(maintenance.schedule === "week"){
+        t=1;
+    }else if(maintenance.schedule === "month"){
+        t=2;
+    }else if(maintenance.schedule === "year"){
+        t=3;
+    }
+    rule.minute = new schedule.Range(0, 59, t);
+
+    schedule.scheduleJob(rule, function(){
+        console.log(rule);
+        console.log(JSON.stringify(maintenance));
+        var newTicket = new Ticket({
+            machineName:maintenance.machineName,
+            reason: "5bae223052b0a00bdcb9aa68"
+        });
+        Ticket.addTicket(newTicket,(err, data) => {
+            if (err) {
+                console.log(JSON.stringify(err));
+                //res.json({ success: false, msg: "Failed to Add maintenance." });
+            } else {
+                console.log(JSON.stringify(data));
+                //res.json({ success: true, msg: "maintenance Added." });
+            }
+        });
+    });
+}
 module.exports = router;
