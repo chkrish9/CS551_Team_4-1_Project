@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import * as io from 'socket.io-client';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/common/auth.service';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -16,7 +17,7 @@ export class HomePage {
       console.log(data);
       this.tickets = data;
     });
-    this.socket = io.connect('http://localhost:3000');
+    this.socket = io.connect('https://fms-2018.herokuapp.com/');
   }
 
   ionViewDidLoad() {
@@ -35,6 +36,15 @@ export class HomePage {
     });
     let url = this.authService.prepEndpoint('maintenance/all/');
     return this.http.get(url, { headers: headers });
+  }
+
+  getTemplateData(tic)
+  {
+    console.log(tic);
+  }
+
+  logout(){
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

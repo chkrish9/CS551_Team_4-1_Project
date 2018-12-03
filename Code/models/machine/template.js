@@ -33,6 +33,10 @@ module.exports.getTemplateById = function (id, callback) {
     Template.findById(id, callback);
 }
 
+module.exports.getTemplateByMachine = function (mTemp, callback) {
+    Template.find({ machine: mTemp.machineId, reason: mTemp.reasonId }).populate('stepgroups').exec(callback);
+}
+
 module.exports.addTemplate = function (newTemplate, callback) {
     //console.log(newTemplate);
     newTemplate.save(callback);

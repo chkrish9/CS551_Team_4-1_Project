@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const Template = require('../../models/machine/Template');
+const Template = require('../../models/machine/template');
 
 //Get
 router.get('/all',passport.authenticate('jwt',{session : false}),  (req, res, next) => {

@@ -4,8 +4,10 @@ const passport = require('passport');
 const Maintenance = require('../../models/home/maintenance');
 const Reason = require('../../models/machine/reasons');
 const Setting = require('../../models/settings/settings');
+const Template = require('../../models/machine/template');
 const Ticket = require('../../models/home/ticket');
 const schedule = require('node-schedule');
+const Step =  require('../../models/machine/step');
 var io="";
 
 //Get
@@ -129,6 +131,34 @@ router.post('/create',passport.authenticate('jwt',{session : false}), (req, res,
 router.get('/all',passport.authenticate('jwt',{session : false}), (req, res, next) => {
     Ticket.getTickets((err, data) => {
         res.json(data);
+    });
+    //res.send('Redirected to Contant list');
+});
+
+//Get
+router.post('/maintenanceDetails',passport.authenticate('jwt',{session : false}), (req, res, next) => {
+    var temp = {
+        machineId:req.body.machineId,
+        reasonId:req.body.reasonId,
+    };
+    console.log(JSON.stringify(temp));
+    Template.getTemplateByMachine(temp,(err, data) => {
+        var d=[];
+        var stgrp = data[0].stepgroups;
+        for(let i=0;i<stgrp.length;i++){
+            var e={};
+            e["stepGroup"]=stgrp[i];
+            e["steps"] = [];
+            for(let j=0;j<stgrp[i].steps.length;j++){
+                Step.findById(stgrp[i].steps[j],(err, data) => {
+                    e["steps"].push(data);
+                    d.push(e);
+                    if(i+1 === stgrp.length && j+1 == stgrp[i].steps.length){
+                        res.send(d);
+                    }
+                });
+            }
+        }
     });
     //res.send('Redirected to Contant list');
 });
