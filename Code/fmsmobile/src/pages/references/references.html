@@ -10,6 +10,6 @@
 
 <ion-content padding>
     <ion-list *ngFor="let doc of this.docs">
-        <ion-item>{{doc.name}}</ion-item>
+        <ion-item>{{doc.name}}<a href="https://fms-2018.herokuapp.com/maintenance/download/{{doc.uploadFileName}}" class="download-icon btn btn-primary"> <ion-icon ios="ios-arrow-round-down" md="md-arrow-round-down"></ion-icon></a></ion-item>
       </ion-list>
 </ion-content>
