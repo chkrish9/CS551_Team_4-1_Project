@@ -61,6 +61,14 @@ const server = http.createServer(app);
 const io = socketIO(server);
 app.set('io', io);
 
+//Static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Required for navigating angular routes without server routes
+app.all('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 server.listen(port, ()=>{
     console.log("Sever running in port : "+ port);
 });
