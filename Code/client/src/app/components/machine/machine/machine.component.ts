@@ -19,8 +19,8 @@ export class MachineComponent implements OnInit {
     "model": "",
     "dateOfInstall": "",
     "qrCode": "",
-    "area": "",
-    "line": "",
+    "area": {},
+    "line": {},
     "barcode": ""
   };
   machines: any;
@@ -61,8 +61,8 @@ export class MachineComponent implements OnInit {
       "model": "",
       "dateOfInstall": "",
       "qrCode": "",
-      "area": "",
-      "line": "",
+      "area": {},
+      "line": {},
       "barcode": ""
     };
   }
@@ -84,11 +84,11 @@ export class MachineComponent implements OnInit {
     });
   }
   generateQR() {
-    this.machine.qrCode = "{ machineName :" + this.machine.name + ",area:" + this.machine.area + ",line:" + this.machine.line + "}";
+    this.machine.qrCode = "{ machineName :" + this.machine.name + ",area:" + this.machine.area["_id"] + ",line:" + this.machine.line["_id"] + "}";
   }
   save() {
     if (this.machine.name !== "" && this.machine.machinegroup !== ""
-      && this.machine.dateOfInstall !== "" && this.machine.area !== "" && this.machine.line !== "") {
+      && this.machine.dateOfInstall !== "" && this.machine.area["_id"] !== "" && this.machine.line["_id"] !== "") {
       this.machineService.addMachine(this.machine).subscribe(data => {
         var toast: Toast = {
           type: 'success',

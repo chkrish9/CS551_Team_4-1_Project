@@ -12,7 +12,7 @@ router.get('/all', passport.authenticate('jwt',{session : false}),(req, res, nex
 });
 
 //Create
-router.post('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
+router.post('/create', (req, res, next) =>{
     let newUserGroup = new UserGroup({
         name : req.body.name,
         description: req.body.description,
