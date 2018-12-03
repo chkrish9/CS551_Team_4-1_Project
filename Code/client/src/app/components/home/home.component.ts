@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   rMaintenance = {
     _id: "0",
     machineName: "",
+    machineId:"",
     schedule: ""
   }
   constructor(
@@ -36,6 +37,9 @@ export class HomeComponent implements OnInit {
   }
 
   update() {
+    this.rMaintenance.machineName = this.machines.filter(el => {
+      return el._id === this.rMaintenance.machineId;
+    })[0].name;
     this.maintenanceService.updateMaintenance(this.rMaintenance).subscribe(data => {
       var toast: Toast = {
         type: 'success',
@@ -48,6 +52,7 @@ export class HomeComponent implements OnInit {
   }
 
   machineNameChange(event) {
+    
     console.log(event.target.value);
     this.maintenanceService.getRMaintenanceByMachineId(event.target.value).subscribe(data => {
       console.log(data);

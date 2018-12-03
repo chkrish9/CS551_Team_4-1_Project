@@ -7,7 +7,15 @@ const TicketModel = mongoose.Schema({
         type: String,
         required: true
     },
-    reason: {
+    reasonName: {
+        type: String,
+        required: true
+    },
+    machineId: {
+        type: String,
+        required: true
+    },
+    reasonId: {
         type: String,
         required: true
     }

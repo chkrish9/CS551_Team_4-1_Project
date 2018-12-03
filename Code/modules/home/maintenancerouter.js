@@ -35,6 +35,7 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), func
     if (id === "0") {
         let newMaintenance = new Maintenance({
             machineName: req.body.machineName,
+            machineId:req.body.machineId,
             schedule: req.body.schedule,
         });
         Maintenance.addMaintenance(newMaintenance, (err, data) => {
@@ -48,6 +49,7 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), func
     } else {
         var maintenance = {
             machineName: req.body.machineName,
+            machineId:req.body.machineId,
             schedule: req.body.schedule,
         };
         Maintenance.updateMaintenance(id, maintenance, (err, data) => {
@@ -82,7 +84,9 @@ function createSchedule(maintenance){
                 console.log(data);
                 var newTicket = new Ticket({
                     machineName:maintenance.machineName,
-                    reason: data[0]._id
+                    reasonName: data[0].name,
+                    machineId:maintenance.machineId,
+                    reasonId:data[0]._id,
                 });
                 Ticket.addTicket(newTicket,(err, data) => {
                     if (err) {
@@ -101,10 +105,12 @@ function createSchedule(maintenance){
 }
 
 //Create
-router.post('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
+router.get('/create',passport.authenticate('jwt',{session : false}), (req, res, next) =>{
     var newTicket = new Ticket({
         machineName:maintenance.machineName,
-        reason: data[0]._id
+        reasonName: data[0].name,
+        machineId:maintenance._id,
+        reasonId:data[0]._id,
     });
     Ticket.addTicket(newTicket,(err, data) => {
         if (err) {
@@ -116,5 +122,13 @@ router.post('/create',passport.authenticate('jwt',{session : false}), (req, res,
             //res.json({ success: true, msg: "maintenance Added." });
         }
     });
+});
+
+//Get
+router.get('/all',passport.authenticate('jwt',{session : false}), (req, res, next) => {
+    Ticket.getTickets((err, data) => {
+        res.json(data);
+    });
+    //res.send('Redirected to Contant list');
 });
 module.exports = router;

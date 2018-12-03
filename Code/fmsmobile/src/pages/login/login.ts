@@ -3,14 +3,6 @@ import {  NavController, NavParams,ToastController  } from 'ionic-angular';
 import {  HomePage } from '../home/home';
 import { AuthService } from '../../services/common/auth.service';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -30,17 +22,16 @@ export class LoginPage {
   {
 
     //login using local storage
-  var users = JSON.parse(localStorage.getItem("users"));
-  var username = this.username;
-  var password = this.password;
   if (this.username !== "" && this.password !== "") {
+    
     const user = {
       username: this.username,
       password: this.password
     }
 
     this.authService.authenticateUser(user).subscribe(data => {
-      console.log(data);
+      console.log("hi");
+      console.log(JSON.stringify(data));
       if (data["success"]) {
         this.authService.storeUserData(data["token"], data["user"], data["privillages"]);
         console.log("Logged In");

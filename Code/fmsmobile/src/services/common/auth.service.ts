@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
@@ -22,6 +21,7 @@ export class AuthService {
   }
 
   authenticateUser(user) {
+    console.log(JSON.stringify(user));
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     let url = this.prepEndpoint('login/authenticate');
     return this.http.post(url, user, { headers: headers });
@@ -45,9 +45,9 @@ export class AuthService {
 //     this.authToken = token;
 //   }
 
-//   getToken() {
-//     return localStorage.getItem('id_token');
-//   }
+  getToken() {
+    return localStorage.getItem('id_token');
+  }
 
 //   logout() {
 //     this.authToken = null;

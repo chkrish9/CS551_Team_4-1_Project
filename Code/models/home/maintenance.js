@@ -7,6 +7,10 @@ const MaintenanceModel = mongoose.Schema({
         type: String,
         required: true
     },
+    machineId: {
+        type: String,
+        required: true
+    },
     schedule: {
         type: String,
         required: true
